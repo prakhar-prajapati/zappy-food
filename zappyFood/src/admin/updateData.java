@@ -1,7 +1,6 @@
 package admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import bean.productBean;
 import dao.MyDao;
 
 /**
- * Servlet implementation class DeleteData
+ * Servlet implementation class updateData
  */
-@WebServlet("/DeleteData")
-public class DeleteData extends HttpServlet {
+@WebServlet("/updateData")
+public class updateData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteData() {
+    public updateData() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +31,21 @@ public class DeleteData extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 MyDao m=new MyDao();
-	      int cid =Integer.parseInt(request.getParameter("ccid"));
-         int x=m.delete(cid);
-     if(x!=0)
-     {
-  	      ArrayList<productBean> list= m.ShowData();
-  	   RequestDispatcher rd=request.getRequestDispatcher("Viewproduct");
-  	      request.setAttribute("List", list);
-		    request.setAttribute("dmsg","Cid: "+cid+ " deleted Successfully..");
-  	   rd.forward(request, response);
-     }		}
+		String pid=request.getParameter("ppid");
+		MyDao obj=new MyDao();
+		productBean e=obj.getEmpDetailsByEid(Integer.parseInt(pid));
+		 RequestDispatcher rd=request.getRequestDispatcher("Updateproduct.jsp");
+			request.setAttribute("emp",e);
+			rd.forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+	
+	
 	}
 
 }

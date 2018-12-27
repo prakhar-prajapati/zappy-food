@@ -1,6 +1,7 @@
 package bean;
 
 public class productBean {
+
 String description,name,category,image;
 double price;
 int id;

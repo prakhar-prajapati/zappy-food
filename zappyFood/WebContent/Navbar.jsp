@@ -17,7 +17,7 @@ response.addHeader("expire", "0");
     <ul class="nav navbar-nav">
       <li ><a href="AdminHome.jsp">Home</a></li>
       <li><a href="InsertData.jsp">Insert Product</a></li>
-      <li><a href="ViewProduct.jsp">SHOW Product</a></li>
+      <li><a href="ViewProduct">SHOW Product</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

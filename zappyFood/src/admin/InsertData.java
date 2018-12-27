@@ -3,9 +3,6 @@ package admin;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import bean.productBean;
+import dao.MyDao;
 /**
  * Servlet implementation class InsertData
  */
@@ -142,28 +142,39 @@ public class InsertData extends HttpServlet {
        }
     }
 
- 
-    try {
-  	  Class.forName("com.mysql.jdbc.Driver");
-  	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root","root");
+// 
+//    try {
+//  	  Class.forName("com.mysql.jdbc.Driver");
+//  	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root","root");
+//
+//  	  PreparedStatement ps=con.prepareStatement("insert into product_details(pcategory,pname,pprice,pdescription,pimage) value(?,?,?,?,?)");//placeholder
+//  	   ps.setString(1,productcategory);
+//	   ps.setString(2,productname);
+//  	    ps.setString(3,productprice);
+//  	    ps.setString(4,productdesc);
+//  	    ps.setString(5,filename);
+//  	    int y=0;
+//  	    y=ps.executeUpdate();
+//  	    if(y!=0)
+//  	    	out.println("uploaded successfully...");
+//          con.close();
+//    }catch(Exception e)
+//    {
+//  	  System.out.println(e);
+//    }
+productBean e=new productBean();
+e.setCategory(productcategory);
+e.setName(productname);
+e.setPrice(Double.parseDouble(productprice));
+e.setDescription(productdesc);
+e.setImage(filename);
 
-  	  PreparedStatement ps=con.prepareStatement("insert into product_details(pcategory,pname,pprice,pdescription,pimage) value(?,?,?,?,?)");//placeholder
-  	   ps.setString(1,productcategory);
-	   ps.setString(2,productname);
-  	    ps.setString(3,productprice);
-  	    ps.setString(4,productdesc);
-  	    ps.setString(5,filename);
-  	    int y=0;
-  	    y=ps.executeUpdate();
-  	    if(y!=0)
-  	    	out.println("uploaded successfully...");
-          con.close();
-    }catch(Exception e)
-    {
-  	  System.out.println(e);
-    }
-
-
+   MyDao obj=new MyDao();
+   int y=obj.insert(e);
+    if(y!=0)
+ 	out.println("uploaded successfully...");
+   
+   
   }catch(Exception ex)
   {
       ex.printStackTrace();

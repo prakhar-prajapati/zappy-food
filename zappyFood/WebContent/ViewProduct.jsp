@@ -19,7 +19,9 @@ for(productBean rs:list)
 		        <td><%=rs.getPrice()%></td>
 		         <td><%=rs.getDescription()%></td>
 		         <td><img src="imgupload/<%=rs.getImage()%>" height="100" width="100"/></td>
-		    <!-- <td> <a href="DeleteData?ccid=<%=rs.getId()%>" class="glyphicon glyphicon-remove-sign"  onClick="return confirm('Do you really want to delete this record?')"></a> </td>-->
+		    <td> <a href="DeleteData?ccid=<%=rs.getId()%>" class="glyphicon glyphicon-remove-sign"  onClick="return confirm('Do you really want to delete this record?')"></a> </td>
+		    <td> <a href="updateData?ppid=<%=rs.getId()%>" class="glyphicon glyphicon-edit" ></a> </td>
+		    
 		         </tr>
 		  <%
 	   }

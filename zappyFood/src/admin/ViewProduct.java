@@ -32,18 +32,17 @@ public class ViewProduct extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		 MyDao obj=new MyDao();
+	        ArrayList<productBean> list=obj.ShowData();
+	        RequestDispatcher rd=request.getRequestDispatcher("ViewProduct.jsp");
+	        request.setAttribute("List", list);
+			rd.forward(request, response);	
+			}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 MyDao obj=new MyDao();
-	        ArrayList<productBean> list=obj.ShowData();
-	        RequestDispatcher rd=request.getRequestDispatcher("ViewProduct.jsp");
-	        request.setAttribute("List", list);
-			rd.forward(request, response);	}
-
+	}
 }

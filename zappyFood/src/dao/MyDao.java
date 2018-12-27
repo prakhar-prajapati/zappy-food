@@ -31,7 +31,7 @@ public class MyDao {
 			
 			try {
 				Connection con=start();
-				PreparedStatement ps=con.prepareStatement("delete from account_details where cid=?");
+				PreparedStatement ps=con.prepareStatement("delete from product_details where pid=?");
 				ps.setInt(1,pid);
 				x= ps.executeUpdate();
 		       con.close();
@@ -43,7 +43,7 @@ public class MyDao {
 			return x;
 		}
 		
-//		
+		
 		//Display data
 		public ArrayList<productBean> ShowData()
 		{
@@ -72,10 +72,84 @@ public class MyDao {
 			}
 			System.out.println(list);
 	    return list;
+	}
+		
+//insert
+     public int insert(productBean e)
+    {int y=0;
+	    try {
+	  	  Class.forName("com.mysql.jdbc.Driver");
+	  	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root","root");
 
+	  	  PreparedStatement ps=con.prepareStatement("insert into product_details(pcategory,pname,pprice,pdescription,pimage) value(?,?,?,?,?)");//placeholder
+	  	   
+		   ps.setString(2,e.getName());
+	  	    ps.setDouble(3,e.getPrice());
+	  	    ps.setString(4,e.getDescription());
+	  	  ps.setString(1,e.getCategory());
+	  	    ps.setString(5,e.getImage());
+	  	    
+	  	    y=ps.executeUpdate();
+	          con.close();
+	    }catch(Exception w)
+	    {
+	  	  System.out.println(w);
+	    }
+	    return y;
+    }
+		
+//update data
+		public int updateData(productBean e)
+		{	int x=0;
+			
+			try {
+				Connection con=start();
+				PreparedStatement ps=con.prepareStatement("update product_details set pcategory=?,pname=?,pprice=?,pdescription=? where pid=?");
+				ps.setString(1,e.getCategory());
+				ps.setString(2, e.getName());
+				ps.setDouble(3, e.getPrice());
+				ps.setString(4, e.getDescription());
+				ps.setInt(5,e.getId());
+				System.out.println(e.getId());
+				
+				//ps.setString(5, e.getImage());
+				x= ps.executeUpdate();
+		       con.close();
+			}catch(SQLException w)
+				{
+				  System.out.println(w);
+				}
+			System.out.println("update method call");
+			return x;
 		}
+			
 		
-
-		
-		
+		public  productBean getEmpDetailsByEid(int pid)
+		{
+			productBean e=new productBean();
+			try {
+				Connection con=start();
+				PreparedStatement ps=con.prepareStatement("select * from product_details where pid=?");
+				ps.setInt(1,pid);
+				ResultSet rs=ps.executeQuery();
+				if(rs.next())
+				{ 
+					
+					e.setId(rs.getInt("pid"));
+					e.setCategory(rs.getString("pcategory"));
+					e.setName(rs.getString("pname"));
+					e.setPrice(rs.getDouble("pprice"));
+					e.setDescription(rs.getString("pdescription"));
+					//e.setImage(rs.getString("pimage"));
+			     }
+				con.close();
+			}catch(SQLException w)
+				{
+				  System.out.println(w);
+				}
+			System.out.println(e);
+	System.out.println("method");
+			return e;
+			
+		}
 }
