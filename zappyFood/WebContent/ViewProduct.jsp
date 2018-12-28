@@ -6,7 +6,7 @@
 ArrayList<productBean> list= (ArrayList<productBean>)request.getAttribute("List");
 	  %>
 	  <div class="container">
-	  <table class="table table-hover">
+	  <table class="table table-bordered">
 	  <tr><th>ID</th><th>CATEGORY</th><th>PRODUCT-NAME</th><th>PRICE</th><th>DESCRIPTION</th><th>IMAGES</th></tr>
 	  <%
 for(productBean rs:list)

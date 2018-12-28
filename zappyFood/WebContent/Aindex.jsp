@@ -1,39 +1,22 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>ADMIN LOGIN</title>
-
-</head>
-<body>
-<center>
-	 
-  ${msg}
-
-<form action="adminLogin" method="post">
-<h1>ADMIN LOGIN PAGE</h1>
-<hr/>
-
-ADMIN ID     <input type="text" name="aid" />
-<br/><br/>
-PASSWORD     <input type="password" name="apass" />
-<br/><br/>
-             <input type="Submit" value="LOGIN">
-
-</form>
-</center>
-</body>
-</html>
- -->
   <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+letter-spacing:1px;
+background:radial-gradient(blue ,white);
+background-attachment:fixed;
+background-size:cover;
+font-family: Arial, Helvetica, sans-serif;
+}
 form {
-border: 3px solid #f1f1f1;
-width:500px;
+width:400px;
+height:400px;
+padding:30px 0;
+background:rgba(0,0,0,0.5);
+color:#efed40;
+ 
 }
 
 input[type=text], input[type=password] {
@@ -49,7 +32,7 @@ button {
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 18px 0;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -71,7 +54,7 @@ button:hover {
 }
 
 img.avatar {
-  width: 15%;
+  width: 20%;
   border-radius:50%;
 }
 
@@ -98,7 +81,7 @@ span.psw {
 </head >
 <body>
 <center>
-<h2>Admin Login</h2>
+<h2 style="color:white;">Admin Login</h2>
 
 <form action="adminLogin" method="post">
   <div class="imgcontainer">
@@ -111,17 +94,18 @@ span.psw {
 
     <label for="psw"><b>Password</b></label>
     <!-- <input type="password" placeholder="Enter Password" name="apass" required> -->
-    <input type="password" name="apass" />    
+    <input type="password" placeholder="Enter Password" name="apass" />    
     <button type="submit">Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
   </div>
-
+<!-- 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
+   -->
 </form>
 </center>
 </body>

@@ -78,8 +78,8 @@ public class MyDao {
      public int insert(productBean e)
     {int y=0;
 	    try {
-	  	  Class.forName("com.mysql.jdbc.Driver");
-	  	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root","root");
+		  	  Class.forName("com.mysql.jdbc.Driver");
+		  	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root","root");
 
 	  	  PreparedStatement ps=con.prepareStatement("insert into product_details(pcategory,pname,pprice,pdescription,pimage) value(?,?,?,?,?)");//placeholder
 	  	   

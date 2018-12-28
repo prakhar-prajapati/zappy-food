@@ -32,7 +32,7 @@ out.println(msgs);
  
 
 <div class="form-group">
-Pid          <input type="text" value="<%=e.getId()%>" name="pid" /><br/><br/>
+Pid          <input type="text" value="<%=e.getId()%>" readonly name="pid" /><br/><br/>
 NAME         <input type="text" value="<%=e.getName()%>" name="pname" /><br/><br/>
 PRICE        <input type="number" value="<%=e.getPrice()%>" name="pprice" /><br/><br/>
 DESCRIPTION  <textarea rows="" cols="" name="pdecs"><%=e.getDescription()%></textarea><br/><br/>
