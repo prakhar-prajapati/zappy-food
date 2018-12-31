@@ -97,7 +97,31 @@ public class MyDao {
 	    }
 	    return y;
     }
-		
+
+   //update image
+   		public int updateimg(productBean e)
+   		{	int x=0;
+   			
+   			try {
+   				Connection con=start();
+   				PreparedStatement ps=con.prepareStatement("update product_details set pimage=? where pid=?");
+   				ps.setString(1, e.getImage());
+   				ps.setInt(2,e.getId());
+   				System.out.println("dao"+e.getId());
+   				//System.out.println(e.getImage());
+   				
+   				x= ps.executeUpdate();
+   		       con.close();
+   			}catch(SQLException w)
+   				{
+   				  System.out.println(w);
+   				}
+   			System.out.println("update method call");
+   			return x;
+   		}
+   			    
+     
+     
 //update data
 		public int updateData(productBean e)
 		{	int x=0;
@@ -140,15 +164,15 @@ public class MyDao {
 					e.setName(rs.getString("pname"));
 					e.setPrice(rs.getDouble("pprice"));
 					e.setDescription(rs.getString("pdescription"));
-					//e.setImage(rs.getString("pimage"));
-			     }
+					e.setImage(rs.getString("pimage"));
+			     System.out.println(rs.getString("pimage"));
+				}
 				con.close();
 			}catch(SQLException w)
 				{
 				  System.out.println(w);
 				}
 			System.out.println(e);
-	System.out.println("method");
 			return e;
 			
 		}

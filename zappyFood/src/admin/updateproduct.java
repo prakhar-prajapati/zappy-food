@@ -49,7 +49,8 @@ public class updateproduct extends HttpServlet {
 		String description=request.getParameter("pdecs");
 		String price= request.getParameter("pprice");
 		
-		//String image=request.getParameter("pimage");
+		String iid=request.getParameter("pidd");
+		String image=request.getParameter("pimage");
 		
 		productBean e=new productBean();
 		e.setId(Integer.parseInt(id));
@@ -57,10 +58,9 @@ public class updateproduct extends HttpServlet {
 
 		e.setDescription(description);
 		e.setCategory(category);
-		//e.setPrice(price);
 		e.setPrice(Double.parseDouble(price));
-		//e.setImage(image);
-		 
+		e.setImage(image);
+        e.setId(Integer.parseInt(iid));		 
 		//function call
 		    MyDao m=new MyDao();
 			int x= m.updateData(e);

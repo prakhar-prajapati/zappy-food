@@ -82,7 +82,7 @@ span.psw {
 <body>
 <center>
 <h2 style="color:white;">Admin Login</h2>
-
+${msg}
 <form action="adminLogin" method="post">
   <div class="imgcontainer">
     <img src="images/avtar.png" alt="Avatar" class="avatar">
