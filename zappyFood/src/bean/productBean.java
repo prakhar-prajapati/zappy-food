@@ -5,6 +5,31 @@ public class productBean {
 String description,name,category,image;
 double price;
 int id;
+String cname,cemail,cpassword,caddress;
+public String getCname() {
+	return cname;
+}
+public void setCname(String cname) {
+	this.cname = cname;
+}
+public String getCemail() {
+	return cemail;
+}
+public void setCemail(String cemail) {
+	this.cemail = cemail;
+}
+public String getCpassword() {
+	return cpassword;
+}
+public void setCpassword(String cpassword) {
+	this.cpassword = cpassword;
+}
+public String getCaddress() {
+	return caddress;
+}
+public void setCaddress(String caddress) {
+	this.caddress = caddress;
+}
 public String getDescription() {
 	return description;
 }

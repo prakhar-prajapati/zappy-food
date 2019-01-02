@@ -8,17 +8,28 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
 <style type="text/css">
 .packet
 {
-margin:60px;
-width:250px;
-height:100px;
-border:2px;
-text-align: center;
-font-size: large;
+margin-top: 20px;
+border:none;
 font-style: italic;
 font-weight: bolder; 
+text-align: center;
+width:250px;
+font-size: large;
+background-color:white;
+padding:0px;
+}
+
+
+input[type="number"]
+{
+width:50px;
+text-align: center;
 }
 
 body{
@@ -40,26 +51,60 @@ padding:1px;
 }
 
 </style>
-
+<meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ZappyFood</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+		
+		<!-- all css here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/chosen.min.css">
+        <link rel="stylesheet" href="assets/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets/css/bundle.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"><img alt="not shown" class="logo" src="images/zappy-logo.png"></a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">What's Zappy</a></li>
-      <li><a href="#">Spreading Zappiness</a></li>
-      <li><a href="#">Join Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li><a href="Login.jsp">LOGIN</a></li>
-    </ul>
-  </div>
-</nav>
+
+<%@include file="header.jsp" %>
 
 
+<div class="banner_area home1_banner mt-30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single_banner">
+                                    <a href="#">
+                                        <img src="assets/img/banner/1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single_banner">
+                                    <a href="#">
+                                        <img src="assets/img/banner/2.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single_banner banner_three">
+                                    <a href="#">
+                                        <img src="assets/img/banner/3.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 <%@page import="java.sql.*" %>
 <div class="container">
   <div class="row">
@@ -78,18 +123,26 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 	  while(rs.next())
 	  {
 		  %>
-		 
+	        	 
 		      <div class="col-lg-3 col-md-4 col-xs-6">
 	     <table class="packet" border="3" >
-		<tr><td><img src="imgupload/<%=rs.getString("pimage")%>" height="130" width="150"/></td>
+		<tr><td><img src="imgupload/<%=rs.getString("pimage")%>" height="120" width="140"/></td>
 		</tr>
 		  <tr><td><%=rs.getString("pcategory")%></td> </tr>
 	        	  <tr><td><%=rs.getString("pname")%></td> </tr>
 	
 		       <tr>  <td><%=rs.getDouble("pprice")%></td>  </tr>
-		       <tr>  <td></td>  </tr>
+		       <tr><td>
+		       <label>Quantity</label>
+		       <input type="number" name="quantity" value="1" />
+		       </td></tr>
+		       <tr><td>
+		       <input type="submit" class="btn btn-primary btn-sm btn-block" value="Add to cart" />
+		       </td></tr>
+		       <br>
 	 </table>	  
 	  </div>
+	  
 	     
 		  <%
 	  }
@@ -104,10 +157,8 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 }
 
 %>
-      
-   
   </div>
 </div>
-
+<%@include file="footer.jsp" %>
 </body>
 </html>

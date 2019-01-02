@@ -98,6 +98,8 @@ public class MyDao {
 	    return y;
     }
 
+     
+     
    //update image
    		public int updateimg(productBean e)
    		{	int x=0;
@@ -174,6 +176,27 @@ public class MyDao {
 				}
 			System.out.println(e);
 			return e;
-			
 		}
+
+// customer singup insert
+		 public int customerInsert(productBean e)
+		    {int y=0;
+			    try {
+			    	Connection con=start();
+				 PreparedStatement ps=con.prepareStatement("insert into customerLogin(cname,cmail,cpassword,caddress) value(?,?,?,?)");//placeholder
+			  	   ps.setString(1,e.getCname());
+			  	    ps.setString(2,e.getCemail());
+			  	  ps.setString(3,e.getCpassword());
+			  	    ps.setString(4,e.getCaddress());
+			  	    System.out.println(e.getCaddress());
+			  	    y=ps.executeUpdate();
+			          con.close();
+			    }catch(Exception w)
+			    {
+			  	  System.out.println(w);
+			    }
+			    return y;
+		    }
+
+
 }

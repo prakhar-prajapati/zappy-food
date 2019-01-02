@@ -55,7 +55,7 @@ padding:1px;
 <div id="pageintro" class="hoc clear" align="center">
 <a style="font-size: xx-large;" href="Aindex.jsp">ADMIN LOGIN</a>
 <br/><br/>
-<a style="font-size: xx-large;" href="#">USER LOGIN</a>
+<a style="font-size: xx-large;" href="customerLogin.jsp">USER LOGIN</a>
 </div>
 </body>
 </html>
