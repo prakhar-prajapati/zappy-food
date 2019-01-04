@@ -12,7 +12,7 @@
 
 
 <style type="text/css">
-.packet
+table
 {
 margin-top: 20px;
 border:none;
@@ -23,9 +23,20 @@ width:250px;
 font-size: large;
 background-color:white;
 padding:0px;
+border-radius: 5px;
 }
 
+td
+{
+border:none;
+}
 
+table:hover
+{
+border:#ccc 2px solid;
+border-radius:5px;
+
+}
 input[type="number"]
 {
 width:50px;
@@ -33,21 +44,17 @@ text-align: center;
 }
 
 body{
+letter-spacing:1px;
 margin:0px;
 padding:0px;
-background:url(images/a.jpg);
+background:url(images/c.jpg);
 background-attachment:fixed;
 background-size: cover;
 }
-a[href]
+
+input[type="submit"]
 {
-color:red;
-}
-.logo{
-width:100px;
-}
-a.navbar-brand{
-padding:1px;
+border-radius:2px; 
 }
 
 </style>
@@ -76,8 +83,7 @@ padding:1px;
 <body>
 
 <%@include file="header.jsp" %>
-
-
+${msg}
 <div class="banner_area home1_banner mt-30">
                     <div class="container-fluid">
                         <div class="row">
@@ -105,20 +111,17 @@ padding:1px;
                         </div>
                     </div>
                 </div>
-<%@page import="java.sql.*" %>
+<hr style="margin:30px; border-bottom-color:#3678b1;" >
+<%@page import="java.sql.*"%>
 <div class="container">
   <div class="row">
-
 <%
-
 try {
 	Class.forName("com.mysql.jdbc.Driver");
 	  Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root","root");
 PreparedStatement ps=con.prepareStatement("select * from product_details");
 	  ResultSet rs=ps.executeQuery();
-	 
 	  %>
-	 
 	  <%
 	  while(rs.next())
 	  {
@@ -130,15 +133,22 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 		</tr>
 		  <tr><td><%=rs.getString("pcategory")%></td> </tr>
 	        	  <tr><td><%=rs.getString("pname")%></td> </tr>
-	
-		       <tr>  <td><%=rs.getDouble("pprice")%></td>  </tr>
+	             <tr>  <td><%=rs.getDouble("pprice")%></td>  </tr>
+		       <form action="cartDetails" method="post">
+		       
 		       <tr><td>
-		       <label>Quantity</label>
+		       <label>Quantity:</label>
 		       <input type="number" name="quantity" value="1" />
+		       </td></tr>
+		       <tr><td>
+		      <%--  <label>pid:</label>--%>
+		       <input type="text" name="pid" hidden value="<%=rs.getInt("pid")%>" />
 		       </td></tr>
 		       <tr><td>
 		       <input type="submit" class="btn btn-primary btn-sm btn-block" value="Add to cart" />
 		       </td></tr>
+		       
+		       </form>
 		       <br>
 	 </table>	  
 	  </div>

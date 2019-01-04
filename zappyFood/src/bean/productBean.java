@@ -5,9 +5,21 @@ public class productBean {
 String description,name,category,image;
 double price;
 int id;
-String cname,cemail,cpassword,caddress;
+String cname,cemail,cpassword,caddress,quantity,cid;
 public String getCname() {
 	return cname;
+}
+public String getQuantity() {
+	return quantity;
+}
+public void setQuantity(String quantity) {
+	this.quantity = quantity;
+}
+public String getCid() {
+	return cid;
+}
+public void setCid(String cid) {
+	this.cid = cid;
 }
 public void setCname(String cname) {
 	this.cname = cname;

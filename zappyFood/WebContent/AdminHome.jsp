@@ -15,7 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin Home</title>
 <%@include file="Navbar.jsp" %>
-<h1 align="center">Wellcome=<%=uid%></h1>
+<h1 align="center" style="font-style: italic; text-decoration: underline;">Welcome <%=uid%></h1>
 <br/>
 <h1>Admin HOME PAGE</h1>
 

@@ -6,9 +6,9 @@
                             <div class="col-12">
                                 <div class="header_wrapper_inner">
                                    
-                                    <div class="logo col-xs-12">
+                                    <div style="width:200px; padding-top:2px;" class="logo col-xs-12">
                                         <a href="index.html">
-                                            <img src="assets/img/zappy-logo.png" alt="">
+                                            <img src="images/zappy-logo.png" alt="">
                                         </a>
                                     </div>
                                     
@@ -18,10 +18,16 @@
                                         <div class="menu">
                                             <nav>
                                                 <ul>
-                                                    <li class="active"><a href="index.jsp">Home <i class="fa fa-angle-down"></i></a>
+                                                    <li class="active"><a href="index.jsp">Home</a>
                                                     </li>
                                                     <li><a href="#">WhatsZappy </a> </li>
-                                                    <li><a href="Login.jsp">login</a>  </li>
+                                                    <li><a>login  <i class="fa fa-angle-down"></i></a>  
+                                                    <ul class="sub_menu">
+                                                            <li><a href="Aindex.jsp">Admin Login</a></li>
+                                                            <li><a href="customerLogin.jsp">User Login</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    
                                                     <li><a href="customerSignUp.jsp">Sign-Up </a>
                                                      <li><a href="#">About us</a></li>
                                                                   
@@ -80,7 +86,7 @@
                                                             </li>
                                                         </ul>    
                                                     </li>
-                                                    <li><a href="Login.jsp">Login</a></li>
+                                                    <li><a href="Login.jsp">Login <i class="fa fa-angle-down"></i></a></li>
                                                 </ul>
                                             </nav>
                                         </div>
@@ -88,83 +94,20 @@
                                     <div class="header_right_info d-flex">
                                         <div class="search_box">
                                             <div class="search_inner">
-                                                <form action="#">
                                                     <a href="logout.jsp">Logout</a>
-                                                    <input type="text" placeholder="Search our catalog">
-                                                    <button type="submit"><i class="ion-ios-search"></i></button>
-                                                </form>
                                             </div>
                                         </div>
                                         <div class="mini__cart">
                                             <div class="mini_cart_inner">
                                                 <div class="cart_icon">
-                                                    <a href="#">
+                                                    
+                                                    <a href="viewCartServlet">
                                                         <span class="cart_icon_inner">
-                                                            <i class="ion-android-cart"></i>
-                                                            <span class="cart_count">2</span>
+                                                            <i class="ion-android-cart"> View cart</i>
                                                         </span>
-                                                        <span class="item_total">$65.00</span>
                                                     </a>
                                                 </div>
-                                                <!--Mini Cart Box-->
-                                                <div class="mini_cart_box cart_box_one">
-                                                    <div class="mini_cart_item">
-                                                        <div class="mini_cart_img">
-                                                            <a href="#">
-                                                                <img src="assets/img/cart/1.jpg" alt="">
-                                                                <span class="cart_count">1</span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="cart_info">
-                                                            <h5><a href="product-details.html">Mushroom Burger</a></h5>
-                                                            <span class="cart_price">$75.99</span>
-                                                        </div>
-                                                        <div class="cart_remove">
-                                                            <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mini_cart_item">
-                                                        <div class="mini_cart_img">
-                                                            <a href="#">
-                                                                <img src="assets/img/cart/2.jpg" alt="">
-                                                                <span class="cart_count">1</span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="cart_info">
-                                                            <h5><a href="#">Country Burger</a></h5>
-                                                            <span class="cart_price">$48.99</span>
-                                                        </div>
-                                                        <div class="cart_remove">
-                                                            <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="price_content">
-                                                        <div class="cart_subtotals">
-															<div class="price_inline">
-																<span class="label">Subtotal </span>
-																<span class="value">$143.49 </span>
-															</div>
-															<div class="price_inline">
-																<span class="label">Shipping </span>
-																<span class="value">$7.00</span>
-															</div>
-                                                            <div class="price_inline">
-																<span class="label">Taxes </span>
-																<span class="value">$0.00</span>
-															</div>
-                                                        </div>
-                                                        <div class="cart-total-price">
-															<span class="label">Total </span>
-															<span class="value">$85.99</span>
-														</div>
-                                                    </div>
-													<div class="min_cart_checkout">
-                                                        <a href="checkout.html">Checkout</a>
-                                                    </div>
                                                 </div>
-                                                <!--Mini Cart Box End -->
-                                            </div>
                                         </div>
                                         <div class="header_account">
                                             <div class="account_inner">

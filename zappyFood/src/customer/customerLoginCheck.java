@@ -64,7 +64,7 @@ public class customerLoginCheck extends HttpServlet {
 						
 //					//Session created   
 						HttpSession session=request.getSession();
-						session.setAttribute("msg",u);
+						session.setAttribute("uid",u);
 						response.sendRedirect("customerHome.jsp");				
 						}
 					else {

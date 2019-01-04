@@ -8,23 +8,22 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script></head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="logo" class="navbar-brand" href="index.jsp"><img alt="not shown" class="logo" src="images/zappy-logo.png"></a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="index.jsp">Home</a></li>
-      <li><a href="#">What's Zappy</a></li>
-      <li><a href="#">Spreading Zappiness</a></li>
-      <li><a href="#">Join Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
-  </div>
-</nav>
-<br/><br/><br/><br/><br/><br/>
 
+	<!-- all css here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/chosen.min.css">
+        <link rel="stylesheet" href="assets/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets/css/bundle.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+<body style="background:url('images/c.jpg'); ">
+<%@include file="header.jsp" %>
 ${msg}
 <form action="signUp" method="post">
 <div class="container">

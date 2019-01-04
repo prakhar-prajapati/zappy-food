@@ -64,7 +64,7 @@ public class adminLogin extends HttpServlet {
 						x = 1;
 					if (x == 1) 
 					{
-//					//Session created   
+					//Session created   
 						HttpSession session=request.getSession();
 						session.setAttribute("msg",u);
 						

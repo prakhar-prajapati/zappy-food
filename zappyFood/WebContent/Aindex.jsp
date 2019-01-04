@@ -5,7 +5,7 @@
 <style>
 body {
 letter-spacing:1px;
-background:radial-gradient(blue ,white);
+background:url("images/c.jpg");
 background-attachment:fixed;
 background-size:cover;
 font-family: Arial, Helvetica, sans-serif;
@@ -14,7 +14,7 @@ form {
 width:400px;
 height:400px;
 padding:30px 0;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.7);
 color:#efed40;
  
 }
@@ -81,7 +81,7 @@ span.psw {
 </head >
 <body>
 <center>
-<h2 style="color:white;">Admin Login</h2>
+<h2 style="color:black; text-decoration:underline; font-style: italic;">Admin Login</h2>
 ${msg}
 <form action="adminLogin" method="post">
   <div class="imgcontainer">

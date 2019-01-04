@@ -5,9 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Customer home page</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- all css here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/chosen.min.css">
+        <link rel="stylesheet" href="assets/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets/css/bundle.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+
 <style type="text/css">
 .packet
 {
@@ -29,7 +42,8 @@ border-radius:20px;
 }
 img
 {
-padding:10px; 
+padding:10px;
+ 
 }
 
 input[type="number"]
@@ -41,7 +55,7 @@ text-align: center;
 body{
 margin:0px;
 padding:0px;
-background:url(images/.jpg);
+background:url(images/c.jpg);
 background-attachment:fixed;
 background-size: cover;
 
@@ -61,7 +75,7 @@ padding:1px;
 
 </head>
 <body>
-
+<%--
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -82,8 +96,47 @@ padding:1px;
 </nav>
 <br/><br/><br/><br/>
 <img alt="" src="images/1.jpg"/> <img alt="" src="images/2.jpg"/><img alt="" src="images/3.jpg"/>
+ --%>
+<%@include file="header.jsp" %>
 
 <%@page import="java.sql.*" %>
+	<%
+	String user=(String)session.getAttribute("uid");
+	if(user==null)
+	{
+		response.sendRedirect("index.jsp");
+	}
+	%>  
+<h2 align="center" style="font-style: italic; text-decoration: underline; ">Welcome <%=user%></h2>
+${msg}
+<div class="banner_area home1_banner mt-30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single_banner">
+                                    <a href="#">
+                                        <img src="assets/img/banner/1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single_banner">
+                                    <a href="#">
+                                        <img src="assets/img/banner/2.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single_banner banner_three">
+                                    <a href="#">
+                                        <img src="assets/img/banner/3.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	  
 <div class="container">
   <div class="row">
 
@@ -107,14 +160,19 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 		  <tr><td><%=rs.getString("pcategory")%></td> </tr>
 	        	  <tr><td><%=rs.getString("pname")%></td> </tr>
 	             <tr><td><%=rs.getDouble("pprice")%></td>  </tr>
+		       <form action="cartDetails" method="post" >
 		       <tr><td>
-		       <label>Quantity</label>
+		       <label>Quantity:</label>
 		       <input type="number" name="quantity" value="1" />
+		       </td></tr>
+		       <tr><td>
+		       <%-- <label>product ID:</label> --%>
+		       <input type="text" value="<%=rs.getInt("pid")%>" hidden name="pid" />
 		       </td></tr>
 		       <tr><td>
 		       <input type="submit" class="btn btn-primary btn-sm btn-block" value="Add to cart" />
 		       </td></tr>
-		       
+		       </form>
 		       <br/>
 	 </table>	  
 	  </div>
@@ -135,6 +193,6 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
    
   </div>
 </div>
-
+<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -9,48 +9,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-body{
-margin:0px;
-padding:0px;
-background-color:#efed40;
-background-size: cover;}
-.login
-{
+	<!-- all css here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/css/chosen.min.css">
+        <link rel="stylesheet" href="assets/css/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="assets/css/bundle.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+<body style="background:url('images/c.jpg'); ">
+<%@include file="header.jsp" %>
 
-width:200;
-height:120px;
-text-align:center;
-margin:100px auto;
-}
-
-
-.logo{
-width:100px;
-}
-a.navbar-brand{
-padding:1px;
-}
-
-</style>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="logo" class="navbar-brand" href="index.jsp"><img alt="not shown" class="logo" src="images/zappy-logo.png"></a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="index.jsp">Home</a></li>
-      <li><a href="#">What's Zappy</a></li>
-      <li><a href="#">Spreading Zappiness</a></li>
-      <li><a href="#">Join Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
-  </div>
-</nav>
-
-<br/><br/><br/>
+<br/><br/><br/><br/><br/>
 <div class="login">
 <div id="pageintro" class="hoc clear" align="center">
 <a style="font-size: xx-large;" href="Aindex.jsp">ADMIN LOGIN</a>
