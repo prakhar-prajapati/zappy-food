@@ -2,7 +2,13 @@ package bean;
 
 public class joinCartBean {
 String image ,name;
-int quantity;
+int quantity, grandTotal;
+public int getGrandTotal() {
+	return grandTotal;
+}
+public void setGrandTotal(int grandTotal) {
+	this.grandTotal = grandTotal;
+}
 Double price;
 public String getImage() {
 	return image;

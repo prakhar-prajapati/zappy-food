@@ -11,6 +11,7 @@ import bean.joinCartBean;
 import bean.productBean;
 
 public class MyDao {
+	
 	// Mysql Connection Code
 	public Connection start() {
 		Connection con = null;
@@ -22,6 +23,29 @@ public class MyDao {
 		}
 		return con;
 	}
+	
+	
+	//cart count
+		 public int cartCount(String user)
+		 { int count=0;
+			 try {
+			 Connection con = start();
+			 PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM cart WHERE USER=?");
+			ps.setString(1,user);	
+			 ResultSet rs = ps.executeQuery();
+		     if(rs.next())
+		     {
+		    	 count=rs.getInt("COUNT(*)");
+		     }
+		 
+		 
+		 }catch(Exception e)
+		 {
+			 System.out.println(e);
+		 }
+				 return count;
+		 }
+		
 
 	// delete record
 	public int delete(int pid) {
@@ -233,101 +257,122 @@ public class MyDao {
 	
 	////////////
 	
-//	
-//	public ArrayList<productBean>  viewproductreadytocook()
-//	{
-//		ArrayList<productBean> list1=new ArrayList<>();
-//		try {
-//			Connection con = start();
-//			
-//			PreparedStatement ps=con.prepareStatement("SELECT  * FROM itemcollection WHERE Category = 'ready to cook'");
-//			ResultSet rs=ps.executeQuery();
-//			
-//			while(rs.next())
-//			{ 
-//				productBean e=new productBean();
-//				e.setSno(rs.getInt("Sno"));
-//				e.setCategory(rs.getString("Category"));
-//				e.setFilename(rs.getString("image"));
-//				e.setProductdesc(rs.getString("Discription"));
-//				e.setProductname(rs.getString("Product_name"));
-//				e.setProductprice(rs.getDouble("price"));
-//				//e.setFilename(filename);(rs.getString("emailid"));
-//				//e.setAcc_no(rs.getInt("AccountNo"));
-//				//e.setBalance(rs.getInt("Balance"));
-//				//e.setSalary(rs.getDouble("salary"));
-//				//e.setAddress(rs.getString("address"));
-//				list1.add(e);
-//		     }
-//			con.close();
-//		}catch( SQLException w)
-//			{
-//			  System.out.println(w);
-//			}
-//	return list1;
-//		
-//	}
-//  
-//  public ArrayList<productBean>  viewproductreadytoeat()
-//	{
-//		ArrayList<productBean> list2=new ArrayList<>();
-//		try {
-//			Connection con = start();
-//			
-//			PreparedStatement ps=con.prepareStatement("SELECT  * FROM itemcollection WHERE Category = 'ready to eat'");
-//			ResultSet rs=ps.executeQuery();
-//			
-//			while(rs.next())
-//			{ 
-//				productBean e=new productBean();
-//				e.setSno(rs.getInt("Sno"));
-//				e.setCategory(rs.getString("Category"));
-//				e.setFilename(rs.getString("image"));
-//				e.setProductdesc(rs.getString("Discription"));
-//				e.setProductname(rs.getString("Product_name"));
-//				e.setProductprice(rs.getDouble("price"));
-//				
-//				list2.add(e);
-//		     }
-//			con.close();
-//		}catch( SQLException w)
-//			{
-//			  System.out.println(w);
-//			}
-//	return list2;
-//		
-//	}
-//  
-//  public ArrayList<productBean>  viewproductreadytodrink()
-//	{
-//		ArrayList<productBean> list3=new ArrayList<>();
-//		try {
-//			Connection con = start();
-//			
-//			PreparedStatement ps=con.prepareStatement("SELECT  * FROM itemcollection WHERE Category = 'ready to drink'");
-//			ResultSet rs=ps.executeQuery();
-//			
-//			while(rs.next())
-//			{ 
-//				productBean e=new productBean();
-//				e.setSno(rs.getInt("Sno"));
-//				e.setCategory(rs.getString("Category"));
-//				e.setFilename(rs.getString("image"));
-//				e.setProductdesc(rs.getString("Discription"));
-//				e.setProductname(rs.getString("Product_name"));
-//				e.setProductprice(rs.getDouble("price"));
-//				
-//				list3.add(e);
-//		     }
-//			con.close();
-//		}catch( SQLException w)
-//			{
-//			  System.out.println(w);
-//			}
-//	return list3;
-//		
-//	}
-//	
 	
+	public ArrayList<productBean>   viewProductreadytocook()
+	{
+		ArrayList<productBean> list=new ArrayList<>();
+		try {
+			
+			Connection con=start();
+			PreparedStatement ps=con.prepareStatement("select pid,pcategory,pname,pprice,pimage from product_details WHERE pcategory = 'ready to cook'");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+				
+			{ 
+				productBean e=new productBean();
+				e.setId(rs.getInt("pid"));
+				e.setCategory(rs.getString("pcategory"));
+				e.setName(rs.getString("pname"));
+				e.setPrice(rs.getDouble("pprice"));
+				
+				e.setImage(rs.getString("pimage"));
+				
 
+				list.add(e);
+		     }
+			con.close();
+		}catch( SQLException w)
+			{
+			  System.out.println(w);
+			}
+	return list;
+		
+	}
+	public ArrayList<productBean>   viewProductreadytoeat()
+	{
+		ArrayList<productBean> list=new ArrayList<>();
+		try {
+			
+			Connection con=start();
+			PreparedStatement ps=con.prepareStatement("select pid,pcategory,pname,pprice,pimage from product_details WHERE pcategory = 'ready to eat'");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+				
+			{ 
+				productBean e=new productBean();
+				e.setId(rs.getInt("pid"));
+				e.setCategory(rs.getString("pcategory"));
+				e.setName(rs.getString("pname"));
+				e.setPrice(rs.getDouble("pprice"));
+				
+				e.setImage(rs.getString("pimage"));
+				
+
+				list.add(e);
+		     }
+			con.close();
+		}catch( SQLException w)
+			{
+			  System.out.println(w);
+			}
+	return list;
+		
+	}	
+	public ArrayList<productBean>   viewProductreadytodrink()
+	{
+		ArrayList<productBean> list=new ArrayList<>();
+		try {
+			
+			Connection con=start();
+			PreparedStatement ps=con.prepareStatement("select pid,pcategory,pname,pprice,pimage from product_details WHERE pcategory = 'ready to drink'");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+				
+			{ 
+				productBean e=new productBean();
+				e.setId(rs.getInt("pid"));
+				e.setCategory(rs.getString("pcategory"));
+				e.setName(rs.getString("pname"));
+				e.setPrice(rs.getDouble("pprice"));
+				
+				e.setImage(rs.getString("pimage"));
+				
+
+				list.add(e);
+		     }
+			con.close();
+		}catch( SQLException w)
+			{
+			  System.out.println(w);
+			}
+	return list;
+		
+	}
+	
+//grand total for cart 
+	public ArrayList<joinCartBean>   grandTotal(String user)
+	{
+		ArrayList<joinCartBean> list=new ArrayList<>();
+		joinCartBean e=new joinCartBean();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
+
+			PreparedStatement ps = con.prepareStatement("SELECT SUM(c.quantity * p.pprice) FROM cart c ,product_details p WHERE c.pid=p.pid AND c.user=?;");// placeholder
+			ps.setString(1, user);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next())
+			{
+				e.setGrandTotal(rs.getInt("SUM(c.quantity * p.pprice)"));
+				list.add(e);
+			}
+			
+			con.close();
+		} catch (Exception w) {
+			System.out.println(w);
+		}
+		return list;
+	}
+	
+	
 }

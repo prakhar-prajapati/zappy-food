@@ -42,8 +42,10 @@ public class viewCartServlet extends HttpServlet {
 		 	}
 		 	
 	     	ArrayList<joinCartBean> list=obj.innerCartData(user);
+	     	ArrayList<joinCartBean> listt=obj.grandTotal(user);
 	        RequestDispatcher rd=request.getRequestDispatcher("viewCart.jsp");
 	        request.setAttribute("List", list);
+	        request.setAttribute("Listt", listt);
 			rd.forward(request, response);	
 			
 		}

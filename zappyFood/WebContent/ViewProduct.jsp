@@ -1,7 +1,7 @@
 <%@page import="java.sql.*" %>
 <%@include file="Navbar.jsp" %>
 <%@page import="java.util.ArrayList,bean.productBean" %>
-
+${dmsg}
 <%
 ArrayList<productBean> list= (ArrayList<productBean>)request.getAttribute("List");
 	  %>

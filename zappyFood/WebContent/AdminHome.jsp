@@ -17,7 +17,7 @@
 <%@include file="Navbar.jsp" %>
 <h1 align="center" style="font-style: italic; text-decoration: underline;">Welcome <%=uid%></h1>
 <br/>
-<h1>Admin HOME PAGE</h1>
+<h1 color="red" ,align="center">Admin HOME PAGE</h1>
 
 
 

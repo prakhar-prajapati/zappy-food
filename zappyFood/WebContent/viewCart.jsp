@@ -15,6 +15,9 @@
 <%
 ArrayList<joinCartBean> list= (ArrayList<joinCartBean>)request.getAttribute("List");
 	  %>
+
+
+	  
 	  <div class="container">
 	  <table class="table table-hover">
 	  <tr><th>Product IMAGES</th><th>Product Name</th><th>Price</th><th>QUANTITY</th><th>TOTAL</th></tr>
@@ -27,13 +30,23 @@ for(joinCartBean e:list)
 		        <td><%=e.getName()%></td>
 		        <td><%=e.getPrice()%></td>
 		        <td><%=e.getQuantity()%></td>
-                 <td><%=e.getPrice()*e.getQuantity() %></td>		       
+		         <td><%=e.getPrice()*e.getQuantity() %></td>		       
 		         </tr>
 		  <%
 	   }
 	  %>
 	  </table>
+	  <%
+ArrayList<joinCartBean> listTotal= (ArrayList<joinCartBean>)request.getAttribute("Listt");
+	  %>
+	   <%
+for(joinCartBean e:listTotal)
+{
+%> 
+      <hr>
+	  <h3 align="right" style="margin:0px;">GrandTotal :   <%=e.getGrandTotal()%></h3>
+	  <button href=""#>Check Out</button>
 	  </div>
-
+<%} %>
 </body>
 </html>

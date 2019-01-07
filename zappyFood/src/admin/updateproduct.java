@@ -49,7 +49,7 @@ public class updateproduct extends HttpServlet {
 		String description=request.getParameter("pdecs");
 		String price= request.getParameter("pprice");
 		
-		String iid=request.getParameter("pidd");
+		String iid=request.getParameter("pid");
 		String image=request.getParameter("pimage");
 		
 		productBean e=new productBean();
@@ -65,13 +65,14 @@ public class updateproduct extends HttpServlet {
 		    MyDao m=new MyDao();
 			int x= m.updateData(e);
 	         if(x==1)
-	         {
-	        	 RequestDispatcher rd=request.getRequestDispatcher("Viewproduct");
+	         {    System.out.println("product call");
+	        	 RequestDispatcher rd=request.getRequestDispatcher("ViewProduct");
 	        	 ArrayList<productBean> list= m.ShowData();
 			     request.setAttribute("LIST", list);
 	        	 request.setAttribute("msg", "Data Updated Successfully...");
                rd.forward(request, response);
-	         }// out.println("<h1>Data Inserted</h1>");
+               
+	         }// 
 	         else {
 	        	 out.println("<h1> failed update</h1>");
 	         }

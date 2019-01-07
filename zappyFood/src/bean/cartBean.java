@@ -1,7 +1,13 @@
 package bean;
 
 public class cartBean {
-	int id,pid,quantity;
+	int id,pid,quantity,grandTotal;
+	public int getGrandTotal() {
+		return grandTotal;
+	}
+	public void setGrandTotal(int grandTotal) {
+		this.grandTotal = grandTotal;
+	}
 	String user;
 	public int getId() {
 		return id;

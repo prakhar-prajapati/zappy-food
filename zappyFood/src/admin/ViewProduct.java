@@ -37,7 +37,8 @@ public class ViewProduct extends HttpServlet {
 	        RequestDispatcher rd=request.getRequestDispatcher("ViewProduct.jsp");
 	        request.setAttribute("List", list);
 			rd.forward(request, response);	
-			}
+			
+	}
 
 
 	/**
