@@ -3,6 +3,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Data Insert</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#name").blur(function(){
+	    
+		var name=$("#name").val();
+	//	alert(name);
+	var	mydata="id="+name;
+		
+	 $("#msg").html("<img src='images/pc.gif' height='50' width='50' ><font color=gray> Checking availability...</font>");
+	 
+	 $.ajax({
+			url:'InsertData',
+			data:mydata,
+			type:'get',
+			success:function(response){
+			//	alert(response);
+				$("#msg").html(response);
+				if(response.includes("Already Exist"))
+					$("#name").val("");
+					
+				
+			}
+		 });
+	});
+});
+
+</script>
 <%@include file="Navbar.jsp" %>
 <% 
 	  	String uid=(String)session.getAttribute("msg");
@@ -25,7 +55,8 @@ out.println(msgs);
 }
 %>
 <div class="form-group">
-NAME         <input type="text" name="pname" /><br/><br/>
+NAME         <input type="text" name="pname" id="name" />
+	<div id="msg"></div>
 PRICE        <input type="number" name="pprice" /><br/><br/>
 DESCRIPTION  <textarea rows="" cols="" name="pdecs"></textarea><br/><br/>
              <Select name="pcategory">

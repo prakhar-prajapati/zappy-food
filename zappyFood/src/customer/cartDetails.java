@@ -2,6 +2,7 @@ package customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,17 +52,31 @@ public class cartDetails extends HttpServlet {
 		if(user==null)
 		{
 			user=request.getRemoteAddr();
-			productBean e=new productBean();
-			e.setQuantity(quantity);
-	         e.setId(Integer.parseInt(id));
-	         e.setName(user);
-	         System.out.println(user);
-	    MyDao obj=new MyDao();
-	    int x=obj.insertcart(e);
-	    
+		}
+		productBean e=new productBean();
+		e.setQuantity(quantity);
+         e.setId(Integer.parseInt(id));
+         e.setName(user);
+         System.out.println(user);
+         MyDao m=new MyDao();
+          
+         
+         int x=m.insertcart(e);
+    
 	    if(x==1)
 	    {
-	    	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+	    	
+	    	 ArrayList<productBean> list1= m.viewProductreadytodrink();
+		      
+		      ArrayList<productBean> list2= m.viewProductreadytoeat();
+		      
+		      ArrayList<productBean> list3= m.viewProductreadytocook();
+		      
+		      RequestDispatcher rd=request.getRequestDispatcher("index1.jsp");
+		        request.setAttribute("LIST1", list1);
+		      request.setAttribute("LIST2", list2);
+		      request.setAttribute("LIST3", list3);
+	    	
 	    	request.setAttribute("msg","<h3>Product added to cart..</h3>");	
 	    	rd.forward(request, response);	
 	    	//out.println("<h2>Added to cart...</h2>");
@@ -73,32 +88,12 @@ public class cartDetails extends HttpServlet {
 	    }
 	    
 		}
-		else if(user!=null)
-	    {
-	    	productBean e=new productBean();
-			e.setQuantity(quantity);
-			e.setId(Integer.parseInt(id));
-	         e.setName(user);
-	    MyDao obj=new MyDao();
-	    int x=obj.insertcart(e);
-	    if(x==1)
-	    {
-	    	//out.println("<h2>Add to cart...</h2>");
-            //response.sendRedirect("customerHome.jsp");	    
-	    	RequestDispatcher rd=request.getRequestDispatcher("customerHome.jsp");
-	    	request.setAttribute("msg","<h3>Product added to cart..</h3>");	
-	    	rd.forward(request, response);	
-	    	   
-	    }
-	    else {
-	    	out.println("<h2> not Added to cart...</h2>");
-	    }
+		
 	    
-		}
+
 	    
 		
 	      
 	}
-}
 
 

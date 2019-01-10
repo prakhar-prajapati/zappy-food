@@ -3,6 +3,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#name").blur(function(){
+	    
+		var name=$("#name").val();
+	//	alert(name);
+	var	mydata="id="+name;
+		
+	 $("#msg").html("<img src='images/pc.gif' height='50' width='50' ><font color=gray> Checking availability...</font>");
+	 
+	 $.ajax({
+			url:'signUp',
+			data:mydata,
+			type:'get',
+			success:function(response){
+			//	alert(response);
+				$("#msg").html(response);
+				if(response.includes("Already Exist"))
+					$("#name").val("");
+					
+				
+			}
+		 });
+	});
+
+
+});
+</script>
+
+
+
+
+
+
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sign-Up</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -35,8 +75,8 @@ ${msg}
 				<h3 class="dark-grey">Registration</h3>
 				
 				<div class="form-group col-lg-12">
-					<label>Username</label>
-					<input type="text" name="cname" class="form-control" id="" value="">
+					<label>User name</label>
+					<input type="text" name="cname" class="form-control" id="name" value="" /><span id="msg"></span> 
 				</div>
 				
 				<div class="form-group col-lg-12">
@@ -46,7 +86,9 @@ ${msg}
 				
 				<div class="form-group col-lg-12">
 					<label>Email Address</label>
-					<input type="text" name="cemail" class="form-control" id="" value="">
+					<input type="text" name="cemail" class="form-control" id="emailid" value="">
+				<div id="msg"></div>
+					
 				</div>
 				
 				<div class="form-group col-lg-12">
@@ -54,7 +96,7 @@ ${msg}
 					<input type="text" name="caddress" class="form-control" id="" value="">
 				</div>			
 				
-                   <input type="submit"  class="btn btn-primary pull-right" value="Sing-up" />
+                   <input type="submit"  class="btn btn-primary pull-right" value="Sign-up" />
 			
 			</div>
 			</div>

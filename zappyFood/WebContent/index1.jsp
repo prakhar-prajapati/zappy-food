@@ -6,10 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home page</title>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 
 <style type="text/css">
@@ -51,6 +52,8 @@ padding:0px;
 background:url(images/c.jpg);
 background-attachment:fixed;
 background-size: cover;
+font-family: 'Lobster', cursive;
+
 }
 
 input[type="submit"]
@@ -59,11 +62,7 @@ border-radius:2px;
 }
 
 h1{
-display:inline-block;
-background: #007bff;
-margin-top:50px;;
-
-
+font-family: 'Lobster', cursive;
 }
 
 </style>
@@ -91,13 +90,25 @@ margin-top:50px;;
 </head>
 <body>
 
-<%@include file="header.jsp" %>
+
 
 <%
 	String user=(String)session.getAttribute("uid");
 %> 
+<%if( user==null)
+	{%>
+	<%@include file="header.jsp" %>
+	<%} %>
+	
+	<%if( user!=null)
+	{%>
+	<%@include file="headeruser.jsp" %>
+	<h2 align="center" style="font-style: italic; text-decoration: underline; ">Welcome <%=user%></h2>
+	<%} %>
+
+
 ${msg}
-${count}
+
 <div class="banner_area home1_banner mt-30">
                     <div class="container-fluid">
                         <div class="row">
@@ -190,9 +201,7 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
  
  
  <% 
- 
  ArrayList<productBean> list1=(ArrayList<productBean>)request.getAttribute("LIST1");
- 
  %>
 
 <div class="container-fluid">
@@ -207,15 +216,15 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
     
 	 <table class="set" border="3" >
-		<tr><td><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
+		
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>" height="150" width="180"/></a></td>
 		</tr>
-		 <tr><td><b><%=ee.getCategory()%></b></td> </tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getPrice()%> Rs.</b></td>  </tr>
 		      
 		     
 		   <form action="cartDetails" method="post">
-         <tr>  <td><b><label>Quantity:<b></label>
+         <tr>  <td><label><strong>Quantity:</strong></label>
 		 <input type="number" name="quantity" value="1" min="0" ></td></tr>
 		 
 		 <input type="text" name="pid" value="<%=ee.getId()%>" hidden /></td></tr>
@@ -262,13 +271,12 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 	 <table class="set" border="3" >
 		<tr><td><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
 		</tr>
-		 <tr><td><b><%=ee.getCategory()%></b></td> </tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getPrice()%> Rs.</b></td>  </tr>
 		      
 		     
 		   <form action="cartDetails" method="post">
-         <tr>  <td><b><label>Quantity:<b></label>
+         <tr>  <td><label><strong>Quantity:</strong></label>
 		 <input type="number" name="quantity" value="1" min="0" ></td></tr>
 		 
 		 <input type="text" name="pid" value="<%=ee.getId()%>" hidden /></td></tr>
@@ -310,13 +318,12 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 	 <table class="set" border="3" >
 		<tr><td><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
 		</tr>
-		 <tr><td><b><%=ee.getCategory()%></b></td> </tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getId()%> Rs.</b></td>  </tr>
 		      
 		     
 		   <form action="cartDetails" method="post">
-         <tr>  <td><b><label>Quantity:<b></label>
+         <tr>  <td><label><strong>Quantity:</strong></label>
 		 <input type="number" name="quantity" value="1" min="0" ></td></tr>
 		 
 		 <input type="text" name="pid" value="<%=ee.getId()%>" hidden /></td></tr>

@@ -102,6 +102,7 @@ padding:1px;
 <%@page import="java.sql.*" %>
 	<%
 	String user=(String)session.getAttribute("uid");
+	String count=(String)session.getAttribute("count");
 	if(user==null)
 	{
 		response.sendRedirect("index.jsp");
@@ -109,6 +110,7 @@ padding:1px;
 	%>  
 <h2 align="center" style="font-style: italic; text-decoration: underline; ">Welcome <%=user%></h2>
 ${msg}
+<%=count %>
 <div class="banner_area home1_banner mt-30">
                     <div class="container-fluid">
                         <div class="row">

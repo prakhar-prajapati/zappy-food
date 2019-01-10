@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <div class="organic_food_wrapper">
                 <!--Header start-->
                 <header class="header sticky-header">
@@ -24,11 +26,11 @@
                                                     <li><a>login  <i class="fa fa-angle-down"></i></a>  
                                                     <ul class="sub_menu">
                                                             <li><a href="Aindex.jsp">Admin Login</a></li>
-                                                            <li><a href="customerLogin.jsp">User Login</a></li>
+                                                            
                                                         </ul>
                                                     </li>
                                                     
-                                                    <li><a href="customerSignUp.jsp">Sign-Up </a>
+                                                    <li><a href="logout.jsp">log-out </a>
                                                      <li><a href="#">About us</a></li>
                                                                   
                                                     </li>
@@ -36,7 +38,7 @@
                                         </div>
                                         
                                         <div class="mobile-menu d-lg-none">
-                                            <!-- <nav>
+                                            <nav>
                                                  <ul>
                                                     <li class="active"><a href="index.html">Home</a>
                                                         <ul>
@@ -86,9 +88,9 @@
                                                             </li>
                                                         </ul>    
                                                     </li>
-                                                    <li><a href="Login.jsp">Login <i class="fa fa-angle-down"></i></a></li>
+                                                   <!--  <li><a href="Login.jsp">Login <i class="fa fa-angle-down"></i></a></li>-->
                                                 </ul>
-                                            </nav> -->
+                                            </nav>
                                         </div>
                                     </div>
                                         <div class="mini__cart">

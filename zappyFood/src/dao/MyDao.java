@@ -25,20 +25,41 @@ public class MyDao {
 	}
 	
 	
+	
+	
+	//cart update
+	 public int cartUpdate(String user , String ip)
+	 {
+		 int x=0;
+		 try {
+			 Connection con=start();
+			 PreparedStatement ps = con.prepareStatement("Update cart set user=? where user=?");
+				ps.setString(1,user);
+				ps.setString(2,ip);
+			x=ps.executeUpdate();
+			con.close();
+			
+		 }catch(Exception e)
+		 {
+			 System.out.println(e);
+		 }
+		 return x;
+	 }
+	
 	//cart count
 		 public int cartCount(String user)
 		 { int count=0;
 			 try {
 			 Connection con = start();
 			 PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM cart WHERE USER=?");
-			ps.setString(1,user);	
+			ps.setString(1,user);
+			System.out.println(user);
 			 ResultSet rs = ps.executeQuery();
 		     if(rs.next())
 		     {
 		    	 count=rs.getInt("COUNT(*)");
 		     }
-		 
-		 
+		     
 		 }catch(Exception e)
 		 {
 			 System.out.println(e);
@@ -47,6 +68,30 @@ public class MyDao {
 		 }
 		
 
+	//user login
+	public int UserLoginCheck(String u , String p)	 
+	{
+		int x=0;
+	
+		try {
+			
+			Connection con =start(); 
+			// prepared Statement
+			PreparedStatement ps = con.prepareStatement("Select * from customerLogin where cname=? and cpassword=?");
+			ps.setString(1, u);
+			ps.setString(2, p);
+			ResultSet rs=ps.executeQuery();
+             x=0;
+			if(rs.next())
+           x=1;
+	}catch(Exception e)
+		{
+		System.out.println(e);
+		}
+		return x;
+	}
+		 
+	
 	// delete record
 	public int delete(int pid) {
 		int x = 0;
@@ -64,6 +109,26 @@ public class MyDao {
 		return x;
 	}
 
+	// delete record
+		public int deleteCartProduct(int id) {
+			int x = 0;
+
+			try {
+				Connection con = start();
+				PreparedStatement ps = con.prepareStatement("delete from cart where id=?");
+				ps.setInt(1, id);
+				x = ps.executeUpdate();
+				con.close();
+			} catch (SQLException w) {
+				System.out.println(w);
+			}
+
+			return x;
+		}
+
+	
+	
+	
 	// Display data
 	public ArrayList<productBean> ShowData() {
 		ArrayList<productBean> list = new ArrayList<>();
@@ -97,16 +162,18 @@ public class MyDao {
 		ArrayList<joinCartBean> list = new ArrayList<>();
 		try {
 			Connection con = start();
-			PreparedStatement ps = con.prepareStatement(
-					"SELECT p.pimage,p.pname,p.pprice,c.quantity FROM product_details p,cart c WHERE p.pid=c.pid And c.user=? ");
+			PreparedStatement ps = con.prepareStatement("Select c.pid, p.pimage,p.pname,p.pprice,c.quantity, c.id FROM product_details p,cart c WHERE p.pid=c.pid And c.user=? ");
 			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				joinCartBean o = new joinCartBean();
-				o.setImage(rs.getString(1));
-				o.setName(rs.getString(2));
-				o.setPrice(rs.getDouble(3));
-				o.setQuantity(rs.getInt(4));
+				o.setPid(rs.getInt(1));
+				o.setImage(rs.getString(2));
+				o.setName(rs.getString(3));
+				o.setPrice(rs.getDouble(4));
+				o.setQuantity(rs.getInt(5));
+				o.setId(rs.getInt(6));
+				
 				list.add(o);
 			}
 		} catch (Exception e) {
@@ -373,6 +440,109 @@ public class MyDao {
 		}
 		return list;
 	}
+	
+	//product discription
+	public ArrayList<productBean>   productdesc(int pid)
+	{
+		ArrayList<productBean> list=new ArrayList<>();
+	
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
+   
+			PreparedStatement ps = con.prepareStatement("SELECT * from product_details where pid=? ");// placeholder
+			ps.setInt(1, pid);
+			ResultSet rs=ps.executeQuery();
+			System.out.println(pid);
+			System.out.println(ps);
+
+           while(rs.next())
+				
+			{ 
+				productBean e=new productBean();
+				e.setId(rs.getInt("pid"));
+				e.setCategory(rs.getString("pcategory"));
+				e.setName(rs.getString("pname"));
+				e.setPrice(rs.getDouble("pprice"));
+				e.setDescription(rs.getString("pdescription"));
+				e.setImage(rs.getString("pimage"));
+				
+
+				list.add(e);
+		     }
+
+			con.close();
+		} catch (Exception w) {
+			System.out.println(w);
+		}
+		return list;
+	}
+	
+
+//Ajax singup validation
+	public String checkName(String name)
+	{
+		String msg=null;
+		
+		try
+		{	
+			int x=0;
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
+		     String sql = "select * from customerlogin  where cname=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				x=1;
+			}
+			if(x==1)
+				msg="<font color=red>Already Exist</font>";
+			else
+				msg="<font color=green>Avaliable</font>";
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+	     return msg;
+	}
+
+
+	
+	//Ajax insert product name  validation check
+		public String checkProductName(String name)
+		{
+			String msg=null;
+			
+			try
+			{	
+				int x=0;
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
+			     String sql = "select * from product_details where pname=?";
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, name);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next())
+				{
+					x=1;
+				}
+				if(x==1)
+					msg="<font color=red>Already Exist</font>";
+				else
+					msg="<font color=green>Avaliable</font>";
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			
+		     return msg;
+		}
+
 	
 	
 }

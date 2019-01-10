@@ -2,11 +2,6 @@ package customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.MyDao;
 
 /**
  * Servlet implementation class customerLoginCheck
@@ -45,39 +42,31 @@ public class customerLoginCheck extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String u=request.getParameter("cname");
 		String p=request.getParameter("cpass");
-		// jdbc code
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
-
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db","root", "root");
-		
-					// prepared Statement
-					PreparedStatement ps = con.prepareStatement("Select * from customerLogin where cname=? and cpassword=?");
-					ps.setString(1, u);
-					ps.setString(2, p);
-					ResultSet rs=ps.executeQuery();
-					int x = 0;
-					if (rs.next())
-						x = 1;
-					if (x == 1) 
+		HttpSession session=request.getSession();
+		String user=(String)session.getAttribute("uid");
+		String ip=request.getRemoteAddr();
+        System.out.println(ip);
+		MyDao m=new MyDao();
+		int x=m.UserLoginCheck(u, p);
+		int y=m.cartUpdate(u,ip);
+					if (x == 1 || y==1) 
 					{
 						
-//					//Session created   
-						HttpSession session=request.getSession();
 						session.setAttribute("uid",u);
-						response.sendRedirect("customerHome.jsp");				
-						}
+						
+						int count=m.cartCount(user);
+						request.setAttribute("count", count);
+						response.sendRedirect("index.jsp");
+						
+						System.out.println(count);   
+				     }
 					else {
-						HttpSession session=request.getSession();
+						
 						session.setAttribute("msg","Wrong password... Try again.");
 						//response.sendRedirect("Aindex.jsp");
 					}
 						
-					}catch(ClassNotFoundException | SQLException e)
-					{
-						out.println(e);
-					}
-		
+					
 	}
 
 }

@@ -2,9 +2,21 @@ package bean;
 
 public class joinCartBean {
 String image ,name;
-int quantity, grandTotal;
+int quantity, grandTotal,pid,id;
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
 public int getGrandTotal() {
 	return grandTotal;
+}
+public int getPid() {
+	return pid;
+}
+public void setPid(int pid) {
+	this.pid = pid;
 }
 public void setGrandTotal(int grandTotal) {
 	this.grandTotal = grandTotal;
