@@ -7,7 +7,7 @@
                                 <div class="single_footer widget">
                                     <div class="single_footer_widget_inner">
                                         <div class="footer_logo">
-                                            <a href="#"><img src="assets/img/logo/logo_footer.png" alt=""></a>
+                                            <a href="#"><img src="images/zappy-logo.png" alt="logo img"></a>
                                         </div>
                                         <div class="footer_content">
                                             <p>Address: 91/1 Banganga Main road , indore -INDIA</p>
@@ -108,7 +108,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-xs-12">
                                     <div class="copyright_text">
-                                        <p>Copyright 2018 <a href="#">Organicfood</a>. All Rights Reserved</p>
+                                        <p>Copyright 2019 <a href="#">Prakhar Prajapati</a>. All Rights Reserved</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-xs-12">

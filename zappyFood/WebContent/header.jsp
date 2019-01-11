@@ -103,36 +103,8 @@
                                                     </a>
                                                 </div>
                                                 </div>
-                                        </div>
-                                        <div class="header_account">
-                                            <div class="account_inner">
-                                                <a href="#"><i class="ion-gear-b"></i></a>
                                             </div>
-                                            <div class="content-setting-dropdown">
-												<div class="language-selector-wrapper">
-													<div class="language-selector">
-														<ul>
-															<li><a href="#"><img src="assets/img/1.jpg" alt="English"><span class="expand-more">English</span></a></li>
-															
-															<li><a href="#"><img src="assets/img/banner/frances2.jpg" alt="Language"><span class="expand-more">Français</span> </a></li>	
-															
-														</ul>
-
-													</div>
-													<div class="currency-selector-wrapper">
-														<ul>
-															<li><a href="#">EUR $</a></li>
-															<li><a href="#">USD $</a></li>
-														</ul>
-													</div>
-													<div class="user_info_top">
-														<ul>
-															<li><a href="my-account.html">my account</a></li>
-															<li><a href="checkout.html">Checkout</a></li>
-															<li><a href="login.html">Sign in</a></li>
-														</ul>
-													</div>
-												</div>
+                                       	</div>
 											</div>
                                         </div>
 									</div>

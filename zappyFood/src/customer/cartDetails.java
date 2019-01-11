@@ -2,7 +2,6 @@ package customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,6 +45,7 @@ public class cartDetails extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String quantity=request.getParameter("quantity");
 		String id=request.getParameter("pid");
+		
 		HttpSession session=request.getSession();
 		String user=(String)session.getAttribute("uid");
         
@@ -53,30 +53,54 @@ public class cartDetails extends HttpServlet {
 		{
 			user=request.getRemoteAddr();
 		}
-		productBean e=new productBean();
-		e.setQuantity(quantity);
-         e.setId(Integer.parseInt(id));
-         e.setName(user);
-         System.out.println(user);
-         MyDao m=new MyDao();
-          
-         
-         int x=m.insertcart(e);
-    
-	    if(x==1)
-	    {
+		 MyDao m=new MyDao();
+	        int y=m.quantityCheck(id, user);
+		if(y==1)
+		{
+			productBean e=new productBean();
+			
+			e.setQuantity(quantity);
+	         e.setId(Integer.parseInt(id));
+	         e.setName(user);
+	         System.out.println("true");
+	        
 	    	
-	    	 ArrayList<productBean> list1= m.viewProductreadytodrink();
-		      
-		      ArrayList<productBean> list2= m.viewProductreadytoeat();
-		      
-		      ArrayList<productBean> list3= m.viewProductreadytocook();
-		      
-		      RequestDispatcher rd=request.getRequestDispatcher("index1.jsp");
-		        request.setAttribute("LIST1", list1);
-		      request.setAttribute("LIST2", list2);
-		      request.setAttribute("LIST3", list3);
 	    	
+       int x=m.updateQuantityViaCart(e , quantity);
+  
+//	    	
+//	      request.setAttribute("LIST3", list3);
+	    	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+	    	request.setAttribute("msg","<h3>Product added to cart..</h3>");	
+	    	rd.forward(request, response);	
+	    	//out.println("<h2>Added to cart...</h2>");
+    	
+		}
+		
+	    if(y==0)
+	    { 
+	    	productBean e=new productBean();
+			e.setQuantity(quantity);
+	         e.setId(Integer.parseInt(id));
+	         e.setName(user);
+	         System.out.println("false");
+	        
+	    	
+	    	
+       int x=m.insertcart(e);
+  
+	    	
+//	    	 ArrayList<productBean> list1= m.viewProductreadytodrink();
+//		      
+//		      ArrayList<productBean> list2= m.viewProductreadytoeat();
+//		      
+//		      ArrayList<productBean> list3= m.viewProductreadytocook();
+//		      
+//		      RequestDispatcher rd=request.getRequestDispatcher("index1.jsp");
+//		        request.setAttribute("LIST1", list1);
+//		      request.setAttribute("LIST2", list2);
+//		      request.setAttribute("LIST3", list3);
+	    	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 	    	request.setAttribute("msg","<h3>Product added to cart..</h3>");	
 	    	rd.forward(request, response);	
 	    	//out.println("<h2>Added to cart...</h2>");

@@ -301,13 +301,11 @@ public class MyDao {
 	// insert cart
 	public int insertcart(productBean e) {
 		int y = 0;
+		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
-
+			Connection con = start();
 			PreparedStatement ps = con.prepareStatement("insert into cart(pid,quantity,user) value(?,?,?)");// placeholder
-
-			ps.setInt(1, e.getId());
+        	ps.setInt(1, e.getId());
 			ps.setInt(2, Integer.parseInt(e.getQuantity()));
 			ps.setString(3, e.getName());
 			System.out.println(e.getName());
@@ -319,12 +317,56 @@ public class MyDao {
 		return y;
 	}
 	
-	
-	
+	//cart check
+		public int quantityCheck(String id , String user)	 
+		{
+			int x=0;
+		
+			try {
+				
+				Connection con =start(); 
+				// prepared Statement
+				PreparedStatement ps = con.prepareStatement("Select * from cart where pid=? and user=?");
+				ps.setInt(1, Integer.parseInt(id));
+				ps.setString(2, user);
+				ResultSet rs=ps.executeQuery();
+	             x=0;
+				if(rs.next())
+	           x=1;
+		}catch(Exception e)
+			{
+			System.out.println(e);
+			}
+			return x;
+		}
+			
+		//cart quantity update
+		public int updateQuantityViaCart(productBean e,String quantity) {
+			int x = 0;
+      	try {
+      		
+      		int q=Integer.parseInt(quantity);
+    			Connection con = start();
+				PreparedStatement ps = con.prepareStatement("update cart set quantity=quantity+? where user=? and pid=?");
+				ps.setInt(1, Integer.parseInt(quantity));
+				ps.setString(2, e.getName());
+				ps.setInt(3, e.getId());
+					
+				x = ps.executeUpdate();
+				System.out.println(ps);
+				con.close();
+			} catch (SQLException w) {
+				System.out.println(w);
+			}
+			System.out.println("update method call");
+			return x;
+		}
+
+
 	
 	////////////
 	
-	
+	//display data sepratly
 	public ArrayList<productBean>   viewProductreadytocook()
 	{
 		ArrayList<productBean> list=new ArrayList<>();

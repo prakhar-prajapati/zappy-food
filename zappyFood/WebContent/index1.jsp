@@ -23,7 +23,7 @@ font-weight: bolder;
 text-align: center;
 width:250px;
 font-size: large;
-background-color:white;
+background-color:transparent;
 padding:0px;
 border-radius: 5px;
 }
@@ -35,9 +35,7 @@ border:none;
 
 table:hover
 {
-border:#ccc 2px solid;
-border-radius:5px;
-
+<!--box-shadow: 5px 10px #888888;-->
 }
 input[type="number"]
 {
@@ -58,7 +56,12 @@ font-family: 'Lobster', cursive;
 
 input[type="submit"]
 {
-border-radius:2px; 
+border-radius:20px;
+width:150px;
+background-color:#007bff; 
+border-color:#007bff;
+color:white;
+margin-top:2px;
 }
 
 h1{
@@ -217,18 +220,18 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
 	 <table class="set" border="3" >
 		
-		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>" height="150" width="180"/></a></td>
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>" height="150" width="280"/></a></td>
 		</tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getPrice()%> Rs.</b></td>  </tr>
 		      
 		     
 		   <form action="cartDetails" method="post">
-         <tr>  <td><label><strong>Quantity:</strong></label>
+         <tr>  <td><label><strong style="font-size:medium;">Quantity:</strong></label>
 		 <input type="number" name="quantity" value="1" min="0" ></td></tr>
 		 
 		 <input type="text" name="pid" value="<%=ee.getId()%>" hidden /></td></tr>
-<tr><td><input type="submit" class="btn btn-primary btn-sm btn-block" value="Add to cart" /></td></tr>
+<tr><td><input type="submit"  value="Add to cart" /></td></tr>
 		       
          </form>
 		   
@@ -269,18 +272,18 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
     
 	 <table class="set" border="3" >
-		<tr><td><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
 		</tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getPrice()%> Rs.</b></td>  </tr>
 		      
 		     
 		   <form action="cartDetails" method="post">
-         <tr>  <td><label><strong>Quantity:</strong></label>
+         <tr>  <td><label><strong style="font-size:medium;">Quantity:</strong></label>
 		 <input type="number" name="quantity" value="1" min="0" ></td></tr>
 		 
 		 <input type="text" name="pid" value="<%=ee.getId()%>" hidden /></td></tr>
-<tr><td><input type="submit" class="btn btn-primary btn-sm btn-block" value="Add to cart" /></td></tr>
+<tr><td><input type="submit"  value="Add to cart" /></td></tr>
          </form>
 		   
     
@@ -316,18 +319,18 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
     
 	 <table class="set" border="3" >
-		<tr><td><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
 		</tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getId()%> Rs.</b></td>  </tr>
 		      
 		     
 		   <form action="cartDetails" method="post">
-         <tr>  <td><label><strong>Quantity:</strong></label>
+         <tr>  <td><label ><strong style="font-size:medium;">Quantity:</strong></label>
 		 <input type="number" name="quantity" value="1" min="0" ></td></tr>
 		 
 		 <input type="text" name="pid" value="<%=ee.getId()%>" hidden /></td></tr>
-<tr><td><input type="submit" class="btn btn-primary btn-sm btn-block" value="Add to cart" /></td></tr>
+<tr><td><input type="submit"  value="Add to cart" /></td></tr>
          </form>
 		   
     
