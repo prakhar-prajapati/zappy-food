@@ -54,6 +54,11 @@ font-family: 'Lobster', cursive;
 
 }
 
+img:hover
+{
+opacity:0.5;
+}
+
 input[type="submit"]
 {
 border-radius:20px;
@@ -66,6 +71,14 @@ margin-top:2px;
 
 h1{
 font-family: 'Lobster', cursive;
+}
+
+.centered {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index:-1;
+  transform: translate(-50%, -50%);
 }
 
 </style>
@@ -220,7 +233,9 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
 	 <table class="set" border="3" >
 		
-		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>" height="150" width="280"/></a></td>
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>" height="150" width="280"/></a>
+		<span class="centered">Description</span>
+		</td>
 		</tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getPrice()%> Rs.</b></td>  </tr>

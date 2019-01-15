@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bean.cartBean;
 import bean.joinCartBean;
 import bean.productBean;
 
@@ -278,7 +279,7 @@ public class MyDao {
 		return e;
 	}
 
-	// customer singup insert
+	// customer sginup insert
 	public int customerInsert(productBean e) {
 		int y = 0;
 		try {
@@ -482,6 +483,27 @@ public class MyDao {
 		}
 		return list;
 	}
+	public int   gTotal(String user)
+	{
+		int gtot=0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
+
+			PreparedStatement ps = con.prepareStatement("SELECT SUM(c.quantity * p.pprice) FROM cart c ,product_details p WHERE c.pid=p.pid AND c.user=?;");// placeholder
+			ps.setString(1, user);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next())
+			{
+				gtot=rs.getInt(1);
+			}
+			
+			con.close();
+		} catch (Exception w) {
+			System.out.println(w);
+		}
+		return gtot;
+	}
 	
 	//product discription
 	public ArrayList<productBean>   productdesc(int pid)
@@ -529,9 +551,8 @@ public class MyDao {
 		try
 		{	
 			int x=0;
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
-		     String sql = "select * from customerlogin  where cname=?";
+			Connection con =start(); 
+					String sql = "select * from customerlogin  where cname=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, name);
 			ResultSet rs = ps.executeQuery();
@@ -585,6 +606,98 @@ public class MyDao {
 		     return msg;
 		}
 
-	
-	
+		//change quantity into cart using ajax
+				public int ChangeQuantity(String cid,String quantity) {
+					int x = 0;
+		      	try {
+		      			Connection con = start();
+						PreparedStatement ps = con.prepareStatement("update cart set quantity=? where id=?");
+						ps.setInt(1, Integer.parseInt(quantity));
+						ps.setInt(2,Integer.parseInt(cid));
+							
+						x = ps.executeUpdate();
+						System.out.println(ps);
+						con.close();
+					} catch (SQLException w) {
+						System.out.println(w);
+					}
+					System.out.println("update method call");
+					return x;
+				}
+
+
+   
+				//check out set data into beans from cart
+				public ArrayList<cartBean> checkOut(String user,String add,int total) {
+
+					ArrayList<cartBean> list = new ArrayList<>();
+					try {
+						Connection con = start();
+						PreparedStatement ps = con.prepareStatement("Select pid,quantity,user FROM cart WHERE user=? ");
+						ps.setString(1, user);
+						ResultSet rs = ps.executeQuery();
+						System.out.println(ps);
+						while (rs.next()) 
+						{  
+							
+							checkOut_insert(rs.getInt(1) ,rs.getInt(2),rs.getString(3),add,total);
+							
+						/*	cartBean o = new cartBean();
+							o.setPid(rs.getInt(1));
+							o.setQuantity(rs.getInt(2));
+							o.setUser(rs.getString(3));
+							list.add(o);
+							System.out.println(ps);*/	
+							
+						
+						}
+						deletecart(user);
+						con.close();
+					} 
+					
+					catch (Exception e) {
+						System.out.println(e);
+					}
+
+					return list;
+				}
+				
+				
+				// insert into order table after check out
+				public int checkOut_insert(int pid,int quan,String user,String address,int total) {
+					int y = 0;
+					try {
+						Connection con =start();
+						PreparedStatement ps = con.prepareStatement("insert into ordertable(pid,quantity,total,user,address,status) value(?,?,?,?,?,?)");// placeholder
+						ps.setInt(1,pid);
+						ps.setDouble(2, quan);
+						ps.setInt(3,total);
+						ps.setString(4, user);
+						ps.setString(5, address);
+						ps.setString(6, "0");
+						System.out.println(ps);
+						y = ps.executeUpdate();
+						con.close();
+					} catch (Exception w) {
+						System.out.println(w);
+					}
+					return y;
+				}
+		
+				public int deletecart(String user) {
+					int x = 0;
+
+					try {
+						Connection con = start();
+						PreparedStatement ps = con.prepareStatement("delete from cart where user=?");
+						ps.setString(1, user);
+						x = ps.executeUpdate();
+						con.close();
+					} catch (SQLException w) {
+						System.out.println(w);
+					}
+
+					return x;
+				}
+				
 }

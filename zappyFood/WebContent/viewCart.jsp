@@ -13,31 +13,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#q").on('keyup',function(){
-	    
-		var quantity=$("#q").val();
-		alert("id="+quantity);
-	var	quantity="quantity="+q;
-	var	pid="pid="+id;
-	var	price="price="+p;
-		
-	 $("#msg").html("<img src='images/pc.gif' height='50' width='50' ><font color=gray> Checking availability...</font>");
-	 
-	 $.ajax({
-			url:'cartUpdate',
-			data:quantity,pid,price
-			type:'post',
-			success:function(response){
-			//	alert(response);
-				$("#msg").html(response);
-			}
-		 });
-	});
-});
-)
+function changeQunatityInCart(i)
+{
+	var cid=document.getElementById('cid'+i).value;
+	var q=document.getElementById('q'+i).value;
+	var up=document.getElementById('p'+i).value;
+	document.getElementById('total'+i).value=q*up;
+	
+	
+	  var xhttp = new XMLHttpRequest();
+	  //var quantity=document.getElementById('q').value;
+	  xhttp.open("POST","ChangeQuantity?cid="+cid+"&q="+q, true);
+	  xhttp.send();
+	   xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	     document.getElementById("gtot").innerHTML = this.responseText;
+	     }
+	  }; 
+	  
+}
 </script>
-
 	<!-- all css here -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/animate.css">
@@ -81,17 +76,18 @@ ${dmsg}
 	  <div class="container">
 	  <table class="table table-hover">
 	  <tr><th>Pid</th><th>Product IMAGES</th><th>Product Name</th><th> Unit-Price</th><th>QUANTITY</th><th>TOTAL</th></tr>
-	  <%
+	  <%int i=0;
 for(joinCartBean e:list)
-{int i=0;
+{
 %>
       <tr>     
-                <td><input type="text" id="id" value="<%=e.getPid()%>" /></td>
+               <input type="text" id="cid<%=i%>" value="<%=e.getId()%>" hidden />
+                <td><input type="text" id="id" value="<%=e.getPid()%>" readonly /></td>
 		        </td><td><img src="imgupload/<%=e.getImage()%>" height="100" width="100"/></td>
 		        <td><%=e.getName()%></td>
-		        <td><input type="text" value="<%=e.getPrice()%>" id="p" /></td>
-		        <td><input type="number" id="q" value="<%=e.getQuantity()%>" onKeyUp="call()" /></td>
-		        <td><input type="text" value="<%=e.getPrice()*e.getQuantity() %>" /></td>		       
+		        <td><input type="text" value="<%=e.getPrice()%>"  id="p<%=i%>" readonly /></td>
+		        <td><input type="number" id="q<%=i%>" value="<%=e.getQuantity()%>" onKeyUp="changeQunatityInCart(<%=i%>)" onchange="changeQunatityInCart(<%=i%>)" /></td>
+		        <td><input type="text" value="<%=e.getPrice()*e.getQuantity() %>" id="total<%=i%>"/></td>		       
 		        <td> <a href="DeleteCartData?ccid=<%=e.getId()%>" class="glyphicon glyphicon-remove-sign"  onClick="return confirm('Do you really want to delete this record?')"></a> </td>
 		    
 		        <!-- 
@@ -100,7 +96,7 @@ for(joinCartBean e:list)
 		         -->
 		        
 		         </tr>
-		  <%
+		  <% i++;
 	   }
 	  %>
 	  </table>
@@ -112,9 +108,15 @@ for(joinCartBean e:listTotal)
 {
 %> 
       <hr>
-	  <h3 align="right" style="margin:0px;">GrandTotal :   <%=e.getGrandTotal()%></h3>
-	  <button href=""#>Check Out</button>
-	  </div>
+	  <h3 align="right" style="margin:0px;">GrandTotal : <div id="gtot"> <%=e.getGrandTotal()%></div></h3>
+	  
+	  <form action="Check_Out" method="post">
+	  <label>Enter Delivery Address:</label>
+	  <input type="text" name="add" id="add" />
+	  <input type="submit" value="check Out" />
+	  </form>
+	</div> 
+	  
 <%} %>
 </body>
 </html>

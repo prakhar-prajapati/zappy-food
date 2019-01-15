@@ -2,6 +2,7 @@ package bean;
 
 public class cartBean {
 	int id,pid,quantity,grandTotal;
+	String address;
 	public int getGrandTotal() {
 		return grandTotal;
 	}
