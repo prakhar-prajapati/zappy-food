@@ -66,6 +66,8 @@ function changeQunatityInCart(i)
 	<%} %>
 
 
+
+
 <%@page import="java.util.ArrayList,bean.joinCartBean" %>
 <%
 ArrayList<joinCartBean> list= (ArrayList<joinCartBean>)request.getAttribute("List");
@@ -111,9 +113,23 @@ for(joinCartBean e:listTotal)
 	  <h3 align="right" style="margin:0px;">GrandTotal : <div id="gtot"> <%=e.getGrandTotal()%></div></h3>
 	  
 	  <form action="Check_Out" method="post">
-	  <label>Enter Delivery Address:</label>
-	  <input type="text" name="add" id="add" />
+	  
+	  <%-- <input type="text" name="add" id="add" />
 	  <input type="submit" value="check Out" />
+	  --%>
+	  
+	  <% if(user==null){%>
+<%--	<label>Enter Delivery Address:</label> --%>
+       <textarea name="add" class="form-control" hidden></textarea>
+  <%}%> 
+  <%if(user!=null){%>
+ <label>Enter Delivery Address:</label>
+       <textarea name="add" class="form-control"></textarea>
+  
+  <%} %>
+  </div>
+  <button style="margin-left:500px; border-radius:20px;margin-top:10px;padding:0px 100px; " type="submit" class="btn btn-primary">Check Out</button>
+	  
 	  </form>
 	</div> 
 	  

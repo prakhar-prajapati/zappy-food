@@ -1,4 +1,4 @@
-package cart;
+package customer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.cartBean;
+import bean.orderBean;
 import dao.MyDao;
 
 /**
- * Servlet implementation class Check_Out
+ * Servlet implementation class Order_Status
  */
-@WebServlet("/Check_Out")
-public class Check_Out extends HttpServlet {
+@WebServlet("/Order_Status")
+public class Order_Status extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Check_Out() {
+    public Order_Status() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,40 +33,22 @@ public class Check_Out extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		MyDao obj=new MyDao();
+		 HttpSession session = request.getSession();
+		 	String user = (String)session.getAttribute("uid");
+		ArrayList<orderBean> list=obj.Show_User_Order(user);
+        RequestDispatcher rd=request.getRequestDispatcher("User_Order_Status.jsp");
+        request.setAttribute("List", list);
+		rd.forward(request, response);	
+		
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	   String address=request.getParameter("add");
-	   HttpSession session=request.getSession();
-		String user=(String)session.getAttribute("uid");
-		MyDao obj=new MyDao();
-		if(user==null)
-		{
-			response.sendRedirect("customerLogin.jsp");
-		}
-		else 
-		{
-		//int total=obj.gTotal(user);
-       
-	   ArrayList<cartBean> list=obj.checkOut(user,address);
-         
-         RequestDispatcher rd=request.getRequestDispatcher("viewCheckOut.jsp");
-          //request.setAttribute("LIST", list);
-  	      rd.forward(request,response);
-  	
-		
-		}
-       
-	
-	
-	
-	}
-	
-	
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
+}

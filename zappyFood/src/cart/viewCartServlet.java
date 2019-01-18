@@ -33,21 +33,36 @@ public class viewCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 	MyDao obj=new MyDao();
-		 	HttpSession session = request.getSession();
-		 	String user = (String)session.getAttribute("uid");
+		MyDao obj=new MyDao();
+	 	HttpSession session = request.getSession();
+	 	String user = (String)session.getAttribute("uid");
+          
 		 	if(user==null)
 		 	{
-		 		user=request.getRemoteAddr();
+		        user=request.getRemoteAddr();
+		 	
 		 	}
 		 	
 	     	ArrayList<joinCartBean> list=obj.innerCartData(user);
 	     	ArrayList<joinCartBean> listt=obj.grandTotal(user);
-	        RequestDispatcher rd=request.getRequestDispatcher("viewCart.jsp");
+	     	 if(list.isEmpty()==true)
+		     {
+		    	 response.sendRedirect("index.jsp");
+//	     		RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+//	    	    
+//	     		 MyDao m=new MyDao();
+//	     		 ArrayList<productBean> list1= m.viewProductreadytodrink();
+//		  	      ArrayList<productBean> list2= m.viewProductreadytoeat();
+//		  	      ArrayList<productBean> list3= m.viewProductreadytocook();
+//	     	    request.setAttribute("msg","<h3> Your Cart is empty<h3>");
+//		        rd.forward(request, response);	
+		     }
+	     	 else {
+	     	RequestDispatcher rd=request.getRequestDispatcher("viewCart.jsp");
 	        request.setAttribute("List", list);
 	        request.setAttribute("Listt", listt);
 			rd.forward(request, response);	
-			
+	     }
 		}
 
 	/**

@@ -19,6 +19,9 @@ response.addHeader("expire", "0");
       <li ><a href="AdminHome.jsp">Home</a></li>
       <li><a href="InsertData.jsp">Insert Product</a></li>
       <li><a href="ViewProduct">SHOW Product</a></li>
+    <li><a href="Admin_View_Order_Servlet">Pending order</a></li>
+      <li><a href="Order_history_Servlet">View order history</a></li>
+    
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>

@@ -62,7 +62,7 @@ opacity:0.5;
 input[type="submit"]
 {
 border-radius:20px;
-width:150px;
+width:227px;
 background-color:#007bff; 
 border-color:#007bff;
 color:white;
@@ -125,6 +125,51 @@ font-family: 'Lobster', cursive;
 
 ${msg}
 
+ <!--Slider start-->
+
+                <div class="slider_area">
+                    <div class="slider_list  owl-carousel">
+                        <div class="single_slide" style="background-image: url(images/asd.jpg);height:400px;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider__content">
+                                            <p class="text-primary">Exclusive Offer -10% Off This Week</p>
+                                            <h2 class="text-muted">Live <strong class="text-white">healthy</strong> </h2>
+                                            <h2 class="text-muted">  <strong class="text-white">Deliciousness</strong> jumping into the mouth</h2>  
+                                            <h6 class="text-primary">Starting at<span>Rs.10 Only</span></h6>
+                                            <div class="slider_btn">
+                                                <a href="">Shopping now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_slide" style="background-image: url(assets/img/banner/2.jpg);height:400px;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="slider__content">
+                                            <p class="text-primary">Exclusive Offer -10% Off This Week</p>
+                                            <h2 class="text-muted">Live <strong class="text-white">healthy</strong> </h2>
+                                            <h2 class="text-muted">  <strong class="text-white">Deliciousness</strong> jumping into the mouth</h2>  
+                                            <h6 class="text-primary">Starting at<span>Rs.10 Only</span></h6>
+                                            <div class="slider_btn">
+                                                <a href="">Shopping now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Slider end-->
+
+
+
+
 <div class="banner_area home1_banner mt-30">
                     <div class="container-fluid">
                         <div class="row">
@@ -152,6 +197,60 @@ ${msg}
                         </div>
                     </div>
                 </div>
+
+
+<!--Shipping area start-->
+                <div class="shipping_area">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="shipping_list d-flex justify-content-between flex-xs-column"
+                                style="margin-top:30px; margin-bottom:20px; background:white; "
+                                >
+                                    <div class="single_shipping_box d-flex">
+                                        <div class="shipping_icon">
+                                            <img src="assets/img/ship/1.png" alt="shipping icon">
+                                        </div>
+                                        <div class="shipping_content">
+                                            <h6>Free Shipping On Order Over Rs.2000</h6>
+                                            <p>Free shipping on all order</p>
+                                        </div>
+                                    </div>
+                                    <div class="single_shipping_box one d-flex">
+                                        <div class="shipping_icon">
+                                            <img src="assets/img/ship/2.png" alt="shipping icon">
+                                        </div>
+                                        <div class="shipping_content">
+                                            <h6>Money Return</h6>
+                                            <p>Back guarantee under 7 days</p>
+                                        </div>
+                                    </div>
+                                    <div class="single_shipping_box two d-flex">
+                                        <div class="shipping_icon">
+                                            <img src="assets/img/ship/3.png" alt="shipping icon">
+                                        </div>
+                                        <div class="shipping_content">
+                                            <h6>Member Discount</h6>
+                                            <p>Support online 24 hours a day</p>
+                                        </div>
+                                    </div>
+                                    <div class="single_shipping_box three d-flex">
+                                        <div class="shipping_icon">
+                                            <img src="assets/img/ship/4.png" alt="shipping icon">
+                                        </div>
+                                        <div class="shipping_content">
+                                            <h6>Online Support 24/7</h6>
+                                            <p>Free shipping on all order</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Shipping area end-->
+
+
 
 <%--
 <hr style="margin:30px; border-bottom-color:#3678b1;" >
@@ -221,7 +320,7 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
  %>
 
 <div class="container-fluid">
-  <h1 >Ready to Drink</h1>
+  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:10px;">Ready to Drink</h2>
    
 	<div class="row">
 	 <%
@@ -273,11 +372,8 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 
 
 <div class="container-fluid">
-  <h1>Ready to eat</h1>
-        
-  
-     
-	<div class="row">
+  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:10px;">Ready to eat</h2>
+   <div class="row">
 	 <%
  for(productBean ee:list2)
    {
@@ -287,7 +383,7 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
     
 	 <table class="set" border="3" >
-		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>"  height="150" width="150"/></td>
 		</tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getPrice()%> Rs.</b></td>  </tr>
@@ -320,11 +416,8 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
  
  %>
 <div class="container-fluid">
-  <h1>Ready to cook</h1>
-        
-  
-     
-	<div class="row">
+  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:10px;">Ready to cook</h2>
+  <div class="row">
 	 <%
  for(productBean ee:list3)
    {
@@ -334,7 +427,7 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
     
     
 	 <table class="set" border="3" >
-		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>"  height="150" width="180"/></td>
+		<tr><td><a href="productDesc?pid=<%=ee.getId()%>"><img src="imgupload/<%=ee.getImage()%>"  height="150" width="150"/></td>
 		</tr>
 		  <tr><td><b><%=ee.getName()%></b></td> </tr>
 		       <tr><td> <b><%=ee.getId()%> Rs.</b></td>  </tr>
@@ -362,9 +455,19 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
   
 </div>
   
- 
- 
- 
 <%@include file="footer.jsp" %>
+<!-- all js here -->
+        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="assets/js/popper.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <script src="assets/js/isotope.pkgd.min.js"></script>
+        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <script src="assets/js/waypoints.min.js"></script>
+        <script src="assets/js/ajax-mail.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/main.js"></script>
 </body>
 </html>

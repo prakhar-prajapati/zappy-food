@@ -37,6 +37,7 @@
 	<h2 align="center" style="font-style: italic; text-decoration: underline; ">Welcome <%=user%></h2>
 	<%} %>
 
-<h1 style="text-align: center; font-family: sans-serif;">Order placed successfully...</h1>
+<h1 style="text-align: center; font-family: sans-serif; margin-top: 100px;">Order placed successfully...<br/></h1>
+<h3 style="text-align: center; font-family: sans-serif; margin-top: 100px;">Product send as soon as posible</h3>
 </body>
 </html>

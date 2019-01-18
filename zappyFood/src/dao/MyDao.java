@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import bean.cartBean;
 import bean.joinCartBean;
+import bean.orderBean;
 import bean.productBean;
 
 public class MyDao {
@@ -483,6 +484,8 @@ public class MyDao {
 		}
 		return list;
 	}
+	
+	//ajax grand total
 	public int   gTotal(String user)
 	{
 		int gtot=0;
@@ -628,19 +631,19 @@ public class MyDao {
 
    
 				//check out set data into beans from cart
-				public ArrayList<cartBean> checkOut(String user,String add,int total) {
+				public ArrayList<cartBean> checkOut(String user,String add) {
 
 					ArrayList<cartBean> list = new ArrayList<>();
 					try {
 						Connection con = start();
-						PreparedStatement ps = con.prepareStatement("Select pid,quantity,user FROM cart WHERE user=? ");
+						PreparedStatement ps = con.prepareStatement("Select c.pid,c.quantity,c.user,p.pprice FROM cart c ,product_details p WHERE c.pid=p.pid and user=? ");
 						ps.setString(1, user);
 						ResultSet rs = ps.executeQuery();
 						System.out.println(ps);
 						while (rs.next()) 
 						{  
 							
-							checkOut_insert(rs.getInt(1) ,rs.getInt(2),rs.getString(3),add,total);
+							checkOut_insert(rs.getInt(1) ,rs.getInt(2),rs.getString(3),add,rs.getInt(4));
 							
 						/*	cartBean o = new cartBean();
 							o.setPid(rs.getInt(1));
@@ -664,14 +667,14 @@ public class MyDao {
 				
 				
 				// insert into order table after check out
-				public int checkOut_insert(int pid,int quan,String user,String address,int total) {
+				public int checkOut_insert(int pid,int quan,String user,String address,int price) {
 					int y = 0;
 					try {
 						Connection con =start();
 						PreparedStatement ps = con.prepareStatement("insert into ordertable(pid,quantity,total,user,address,status) value(?,?,?,?,?,?)");// placeholder
 						ps.setInt(1,pid);
 						ps.setDouble(2, quan);
-						ps.setInt(3,total);
+						ps.setInt(3,price);
 						ps.setString(4, user);
 						ps.setString(5, address);
 						ps.setString(6, "0");
@@ -700,4 +703,183 @@ public class MyDao {
 					return x;
 				}
 				
+				
+				
+				
+				// Display order data in admin panel who is panding
+				public ArrayList<orderBean> ShowOrder() {
+					ArrayList<orderBean> list = new ArrayList<>();
+
+					try {
+						Connection con = start();
+						PreparedStatement ps = con.prepareStatement("select * from ordertable where status=? order by oid desc");
+						ps.setInt(1,0);
+						ResultSet rs = ps.executeQuery();
+						while (rs.next()) {
+							orderBean o = new orderBean();
+							o.setOid(rs.getInt("oid"));
+							o.setPid(rs.getInt("pid"));
+							o.setQuantity(rs.getInt("quantity"));
+							o.setTotal(rs.getDouble("total"));
+							o.setAddress(rs.getString("address"));
+							o.setUser(rs.getString("user"));
+							o.setStatus(rs.getInt("status"));
+							list.add(o);
+
+						}
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					System.out.println(list);
+					return list;
+				}
+			
+
+				
+				// Display order history in admin panel who is not panding
+				public ArrayList<orderBean> ShowOrderHistory() {
+					ArrayList<orderBean> list = new ArrayList<>();
+
+					try {
+						Connection con = start();
+						PreparedStatement ps = con.prepareStatement("select * from ordertable where status!=0 order by oid desc");
+//						ps.setInt(1,0);
+						ResultSet rs = ps.executeQuery();
+						while (rs.next()) {
+							orderBean o = new orderBean();
+							o.setOid(rs.getInt("oid"));
+							o.setPid(rs.getInt("pid"));
+							o.setQuantity(rs.getInt("quantity"));
+							o.setTotal(rs.getDouble("total"));
+							o.setAddress(rs.getString("address"));
+							o.setUser(rs.getString("user"));
+							o.setStatus(rs.getInt("status"));
+							o.setDatetime(rs.getString("datetime"));
+							list.add(o);
+                        System.out.println(ps);
+						}
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					System.out.println(list);
+					return list;
+				}
+
+				//product dispatch
+						public int productDispatch(int oid) {
+							int x = 0;
+				      	try {
+				      			Connection con = start();
+								PreparedStatement ps = con.prepareStatement("update ordertable set status=? where oid=?");
+								ps.setInt(1, 1);
+								ps.setInt(2,oid);
+									
+								x = ps.executeUpdate();
+								System.out.println(ps);
+								con.close();
+							} catch (SQLException w) {
+								System.out.println(w);
+							}
+							System.out.println("update method call");
+							return x;
+						}
+				
+
+						//product Notavailable
+								public int product_Notavailable(int oid) {
+									int x = 0;
+						      	try {
+						      			Connection con = start();
+										PreparedStatement ps = con.prepareStatement("update ordertable set status=? where oid=?");
+										ps.setInt(1, 2);
+										ps.setInt(2,oid);
+											
+										x = ps.executeUpdate();
+										System.out.println(ps);
+										con.close();
+									} catch (SQLException w) {
+										System.out.println(w);
+									}
+									System.out.println("update method call");
+									return x;
+								}
+
+								
+								
+								
+
+								// Display all order of user 
+								public ArrayList<orderBean> Show_User_Order(String user)
+								{
+									ArrayList<orderBean> list = new ArrayList<>();
+
+									try {
+										Connection con = start();
+										PreparedStatement ps = con.prepareStatement("select * from ordertable where user=? order by oid desc");
+										ps.setString(1, user);
+										ResultSet rs = ps.executeQuery();
+										while (rs.next()) {
+											orderBean o = new orderBean();
+											o.setOid(rs.getInt("oid"));
+											o.setPid(rs.getInt("pid"));
+											o.setQuantity(rs.getInt("quantity"));
+											o.setTotal(rs.getDouble("total"));
+											o.setAddress(rs.getString("address"));
+											o.setUser(rs.getString("user"));
+											o.setStatus(rs.getInt("status"));
+											o.setDatetime(rs.getString("datetime"));
+											list.add(o);
+
+										}
+									} catch (Exception e) {
+										System.out.println(e);
+									}
+									System.out.println(list);
+									return list;
+								}
+						
+				
+								//get email id for email sending
+								public String sendEmail(String user) {
+									String email = null;
+						      	try {
+						      			Connection con = start();
+										PreparedStatement ps = con.prepareStatement("Select cmail from customerlogin where cname=?");
+										ps.setString(1,user);
+										System.out.println(ps);
+										System.out.println("send email  dao call");
+										ResultSet rs=ps.executeQuery();
+										if(rs.next())
+										{
+										email=rs.getString(1);
+										}
+											con.close();
+									} catch (SQLException w) {
+										System.out.println(w);
+									}
+									return email;
+								}
+					
+								//get password  for forget password email sending
+								public String sendPasswprd(String user) {
+									String password = null;
+						      	try {
+						      			Connection con = start();
+										PreparedStatement ps = con.prepareStatement("Select cpassword from customerlogin where cname=?");
+										ps.setString(1,user);
+										System.out.println(ps);
+										System.out.println("send password dao call");
+										ResultSet rs=ps.executeQuery();
+										if(rs.next())
+										{
+											password=rs.getString(1);
+										}
+											con.close();
+									} catch (SQLException w) {
+										System.out.println(w);
+									}
+									return password;
+								}
+					
+								
 }

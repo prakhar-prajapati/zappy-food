@@ -1,12 +1,10 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Login Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Forget Password</title>
    <!--Made with love by Mutiullah Samim -->
    
 	<!--Bootsrap 4 CDN-->
@@ -105,15 +103,16 @@ margin-left: 4px;
 }
 </style>
 
+
 </head>
 <body>
-
 
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
-				<h3>Sign In</h3>
+				${msg}
+				<h3>Forget password</h3>
 				<div class="d-flex justify-content-end social_icon">
 					<span><i class="fab fa-facebook-square"></i></span>
 					<span><i class="fab fa-google-plus-square"></i></span>
@@ -121,7 +120,7 @@ margin-left: 4px;
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="customerLoginCheck" method="post">
+				<form action="Forget_pass_Servlet" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -129,17 +128,8 @@ margin-left: 4px;
 						<input type="text" class="form-control" name="cname" placeholder="username">
 						
 					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" class="form-control" name="cpass" placeholder="password">
-					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
-					</div>
 					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+						<input type="submit" value="Forget password" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
@@ -147,12 +137,10 @@ margin-left: 4px;
 				<div class="d-flex justify-content-center links">
 					Don't have an account?<a href="customerSignUp.jsp">Sign Up</a>
 				</div>
-				<div class="d-flex justify-content-center">
-					<a href="Forget_password.jsp">Forgot your password?</a>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

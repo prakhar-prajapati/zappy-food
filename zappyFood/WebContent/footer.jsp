@@ -103,20 +103,15 @@
                         </div>
                     </div>
                     
-                    <div class="copyright">
+                    <div class="copyright" style="margin-top: 10px;">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-xs-12">
                                     <div class="copyright_text">
-                                        <p>Copyright 2019 <a href="#">Prakhar Prajapati</a>. All Rights Reserved</p>
+                                        <p>&copy; 2019 <a href="#"><strong>Prakhar Prajapati</strong></a>. All Rights Reserved</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12">
-                                    <div class="footer_mastercard text-right">
-                                        <a href="#"><img src="assets/img/brand/payment.png" alt=""></a>
-                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     
