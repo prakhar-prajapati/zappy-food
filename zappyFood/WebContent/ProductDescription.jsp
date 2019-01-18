@@ -1,3 +1,16 @@
+<style>
+body{
+letter-spacing:1px;
+margin:0px;
+padding:0px;
+background:url(images/c.jpg);
+background-attachment:fixed;
+background-size: cover;
+font-family: 'Lobster', cursive;
+
+}
+</style>
+
 <%@page import="java.sql.*" %>
 <%@page import="java.util.ArrayList,bean.productBean" %>
 <!-- all css here -->

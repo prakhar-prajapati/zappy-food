@@ -123,12 +123,13 @@ for(joinCartBean e:listTotal)
        <textarea name="add" class="form-control" hidden></textarea>
   <%}%> 
   <%if(user!=null){%>
+ <div class="col-sm-5">
  <label>Enter Delivery Address:</label>
-       <textarea name="add" class="form-control"></textarea>
-  
+       <textarea name="add" class="form-control"required></textarea>
+  </div>
   <%} %>
   </div>
-  <button style="margin-left:500px; border-radius:20px;margin-top:10px;padding:0px 100px; " type="submit" class="btn btn-primary">Check Out</button>
+  <button style="margin-left:150px; border-radius:20px;margin-top:10px;padding:0px 100px; " type="submit" class="btn btn-primary">Check Out</button>
 	  
 	  </form>
 	</div> 

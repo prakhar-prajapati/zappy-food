@@ -28,8 +28,6 @@ response.addHeader("expire", "0");
                                                     <li class="active"><a href="index.jsp">Home</a>
                                                     </li>
                                                      <li><a href="Order_Status">Order-Status</a></li>
-                                                    <li><a href="#">WhatsZappy </a> </li>
-                                                     <li><a href="#">About us</a></li>
                                                     <li><a href="logout.jsp">log-out </a>
                                                                   
                                                     </li>
@@ -56,7 +54,6 @@ response.addHeader("expire", "0");
                                         <div class="mini__cart">
                                             <div class="mini_cart_inner">
                                                 <div class="cart_icon">
-                                                    
                                                     <a href="viewCartServlet">
                                                         <span class="cart_icon_inner">
                                                             <i class="ion-android-cart"> View cart</i>

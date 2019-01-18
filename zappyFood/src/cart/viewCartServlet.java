@@ -36,8 +36,8 @@ public class viewCartServlet extends HttpServlet {
 		MyDao obj=new MyDao();
 	 	HttpSession session = request.getSession();
 	 	String user = (String)session.getAttribute("uid");
-          
-		 	if(user==null)
+		
+	 	 	if(user==null)
 		 	{
 		        user=request.getRemoteAddr();
 		 	
@@ -58,7 +58,9 @@ public class viewCartServlet extends HttpServlet {
 //		        rd.forward(request, response);	
 		     }
 	     	 else {
-	     	RequestDispatcher rd=request.getRequestDispatcher("viewCart.jsp");
+	     		int count=obj.cartCount(user);
+	    	 	request.setAttribute("count", count);
+	    		 RequestDispatcher rd=request.getRequestDispatcher("viewCart.jsp");
 	        request.setAttribute("List", list);
 	        request.setAttribute("Listt", listt);
 			rd.forward(request, response);	

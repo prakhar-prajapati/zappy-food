@@ -14,15 +14,6 @@
                                             <p>Phone: 963072395</p>
                                             <p>Email: prakhar.kp@gmail.com</p>
                                         </div>
-                                        <div class="footer_social">
-                                            <h4>Get in Touch:</h4>
-                                            <div class="footer_social_icon">
-                                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                                <a href="#"><i class="fa fa-youtube"></i></a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <!--Single Footer-->
@@ -105,10 +96,10 @@
                     
                     <div class="copyright" style="margin-top: 10px;">
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row" style="margin-left:450px;">
                                 <div class="col-lg-6 col-md-6 col-xs-12">
                                     <div class="copyright_text">
-                                        <p>&copy; 2019 <a href="#"><strong>Prakhar Prajapati</strong></a>. All Rights Reserved</p>
+                                        <p>&copy; 2019 <a href="#"><strong style="background:white;">Prakhar Prajapati</strong></a>. All Rights Reserved</p>
                                     </div>
                                 </div>
                                 </div>

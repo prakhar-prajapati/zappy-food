@@ -65,7 +65,7 @@ $(document).ready(function(){
 <body style="background:url('images/c.jpg'); ">
 <%@include file="header.jsp" %>
 ${msg}
-<form action="signUp" method="post">
+<form action="signUp" name="myform" method="post">
 <div class="container">
 <div class="span3">
 <div class="container-fluid">
@@ -76,32 +76,46 @@ ${msg}
 				
 				<div class="form-group col-lg-12">
 					<label>User name</label>
-					<input type="text" name="cname" class="form-control" id="name" value="" /><span id="msg"></span> 
-				</div>
+					<input type="text" name="cname" class="form-control" id="name"  value="" required/><span id="msg"></span> 
+						</div>
 				
 				<div class="form-group col-lg-12">
 					<label>Password</label>
-					<input type="password" name="cpassword" class="form-control" id="" value="">
+					<input type="password" name="cpassword" class="form-control" id="password" value="">
+				<span id="message" class="text-danger front-weight-bold"></span>
+	  
 				</div>
 				
 				<div class="form-group col-lg-12">
 					<label>Email Address</label>
 					<input type="text" name="cemail" class="form-control" id="emailid" value="">
-				<div id="msg"></div>
-					
+				<span id="message" class="text-danger front-weight-bold"></span>
+	  
+	  		<div id="msg"></div>
 				</div>
+		
+		<div class="form-group col-lg-12">
+					<label>Mobile number</label>
+					<input type="text" name="cpassword" class="form-control" id="mnumber" value="">
+				<span id="message" class="text-danger front-weight-bold"></span>
+	  
+				</div>
+		
 				
 				<div class="form-group col-lg-12">
 					<label>Address</label>
-					<input type="text" name="caddress" class="form-control" id="" value="">
+					<input type="text" name="caddress" class="form-control" id="add" value="">
+				<span id="message" class="text-danger front-weight-bold"></span>
 				</div>			
 				
-                   <input type="submit"  class="btn btn-primary pull-right" value="Sign-up" />
+                   <input style="border-radius:5px;" type="submit" class="btn btn-primary pull-right" value="Sign-up" onblur="return fname();"/>
 			
 			</div>
 			</div>
 	</form>
 	
 </div>
+<script type="text/javascript" src="javaScript.js"></script>
+  
 </body>
 </html>

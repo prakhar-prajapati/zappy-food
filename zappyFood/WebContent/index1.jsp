@@ -84,7 +84,7 @@ font-family: 'Lobster', cursive;
 </style>
 <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>ZappyFood</title>
+        <title>ZappyFood.in</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -129,24 +129,24 @@ ${msg}
 
                 <div class="slider_area">
                     <div class="slider_list  owl-carousel">
-                        <div class="single_slide" style="background-image: url(images/asd.jpg);height:400px;">
+                        <div class="single_slide" style="background-image: url(images/slider.jpg);height:450px;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="slider__content">
-                                            <p class="text-primary">Exclusive Offer -10% Off This Week</p>
-                                            <h2 class="text-muted">Live <strong class="text-white">healthy</strong> </h2>
-                                            <h2 class="text-muted">  <strong class="text-white">Deliciousness</strong> jumping into the mouth</h2>  
-                                            <h6 class="text-primary">Starting at<span>Rs.10 Only</span></h6>
+                                        <div class="slider__content slider_content_two">
+                                            <p>Exclusive Offer -10% Off This Week</p>
+                                            <h2>Live <strong>healthy</strong> with a glass</h2>
+                                            <h3>of <strong>fruit juice</strong> every day</h3>  
+                                            <h6>Starting at<span>Rs.10 Only</span></h6>
                                             <div class="slider_btn">
-                                                <a href="">Shopping now</a>
+                                                <a href="#">Shopping now</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="single_slide" style="background-image: url(assets/img/banner/2.jpg);height:400px;">
+                        <div class="single_slide" style="background-image: url(images/asd.jpg);height:450px;">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
@@ -156,7 +156,7 @@ ${msg}
                                             <h2 class="text-muted">  <strong class="text-white">Deliciousness</strong> jumping into the mouth</h2>  
                                             <h6 class="text-primary">Starting at<span>Rs.10 Only</span></h6>
                                             <div class="slider_btn">
-                                                <a href="">Shopping now</a>
+                                                <a href="#">Shopping now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -205,7 +205,7 @@ ${msg}
                         <div class="row">
                             <div class="col-12">
                                 <div class="shipping_list d-flex justify-content-between flex-xs-column"
-                                style="margin-top:30px; margin-bottom:20px; background:white; "
+                                style="margin-top:40px; margin-bottom:30px; background:white; "
                                 >
                                     <div class="single_shipping_box d-flex">
                                         <div class="shipping_icon">
@@ -320,7 +320,7 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
  %>
 
 <div class="container-fluid">
-  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:10px;">Ready to Drink</h2>
+  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:20px;">Ready to Drink</h2>
    
 	<div class="row">
 	 <%
@@ -372,7 +372,7 @@ PreparedStatement ps=con.prepareStatement("select * from product_details");
 
 
 <div class="container-fluid">
-  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:10px;">Ready to eat</h2>
+  <h2 style="background:lightblue; text-align:center; border-bottom:solid orange 3px; margin-top:20px;">Ready to eat</h2>
    <div class="row">
 	 <%
  for(productBean ee:list2)
