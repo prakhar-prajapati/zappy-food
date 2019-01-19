@@ -59,7 +59,7 @@ public class order_servlet extends HttpServlet {
 				    request.setAttribute("msg", "Dispatch Successfully..");
 		 	    String to=email;
 				 String sub="Thanks for Shopping";
-				 String msgs="Welcome to zappy food ,ur order id is "+oid+" and your order has been dispatched";
+				 String msgs="<i><b>Welcome to zappy food </b><br/>Your order id is "+oid+" and your order has been dispatched.<br/><b>Thanks for Shopping.</b></i>";
 				 sendMail(to,sub,msgs);
 			     System.out.println("Sent message successfully....");
 			     rd.forward(request, response);
@@ -78,7 +78,7 @@ public class order_servlet extends HttpServlet {
 		    request.setAttribute("msg","product Not Available");
  	  String to=email;
 		 String sub="Thanks for Shopping";
-		 String msgs="Welcome to zappy food ,Your order is not available , sorry for inconvienece ,we inform You sortly if product come in stock";
+		 String msgs="<i>Welcome to zappy food ,Your order is<strong> not available</strong><br/>sorry for inconvienece <br/>we inform You sortly if product come in stock<br><strong>Thanks for shopping.</strong></i>";
 		 sendMail(to,sub,msgs);
 	     System.out.println("Sent message successfully....");
 	     rd.forward(request, response);
@@ -125,7 +125,7 @@ public class order_servlet extends HttpServlet {
 		       message.setSubject(sub);
 
 		       // Now set the actual message
-		       message.setText(msgs);
+		       message.setContent(msgs,"text/html");
 
 		       // Send message
 		       
