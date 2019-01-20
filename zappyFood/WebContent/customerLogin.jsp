@@ -136,7 +136,7 @@ margin-left: 4px;
 						<input type="password" class="form-control" name="cpass" placeholder="password" required />
 					</div>
 					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
+						<input type="checkbox" onclick="myFunction()">Show Password
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">
@@ -154,5 +154,6 @@ margin-left: 4px;
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="javaScript.js"></script>	
 </body>
 </html>
