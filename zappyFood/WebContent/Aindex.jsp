@@ -94,7 +94,8 @@ ${msg}
 
     <label for="psw"><b>Password</b></label>
     <!-- <input type="password" placeholder="Enter Password" name="apass" required> -->
-    <input type="password" placeholder="Enter Password" name="apass" required />    
+    <input type="password" id="pass" placeholder="Enter Password" name="apass" required />    
+    <input type="checkbox" onclick="myFunction()">Show Password  
     <button type="submit">Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -108,6 +109,7 @@ ${msg}
    -->
 </form>
 </center>
+  <script type="text/javascript" src="javaScript.js"></script>
 </body>
 </html>
   
