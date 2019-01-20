@@ -101,3 +101,12 @@ if(password<5 || password>10)
    
    
 }
+
+function myFunction() {
+	  var x = document.getElementById("pass");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	}
