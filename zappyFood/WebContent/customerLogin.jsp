@@ -133,7 +133,7 @@ margin-left: 4px;
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" name="cpass" placeholder="password" required />
+						<input type="password" class="form-control" name="cpass" id="pass" placeholder="password" required />
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox" onclick="myFunction()">Show Password
