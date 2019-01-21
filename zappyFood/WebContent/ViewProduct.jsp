@@ -28,6 +28,4 @@ for(productBean rs:list)
 	  %>
 	  </table>
 	  </div>
-	 
-	 <%@include file="footer.jsp" %>
 	  

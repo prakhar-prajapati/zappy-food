@@ -54,6 +54,7 @@ if(msgs!=null)
 out.println(msgs);
 }
 %>
+${msg}
 <div class="form-group">
 NAME         <input type="text" name="pname" id="name" />
 	<div id="msg"></div>

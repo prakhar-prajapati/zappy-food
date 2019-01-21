@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,7 @@ public class InsertData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter out=response.getWriter();
 		String name=request.getParameter("id");
 		MyDao ob=new MyDao();
@@ -184,9 +185,13 @@ e.setImage(filename);
 
    MyDao obj=new MyDao();
    int y=obj.insert(e);
-    if(y!=0)
- 	out.println("uploaded successfully...");
-   
+    if(y!=0) {
+    	RequestDispatcher rd=request.getRequestDispatcher("InsertData.jsp"); 
+	   request.setAttribute("msg", "<h2>uploaded successfully...</h2>");	
+	 	rd.forward(request, response);
+	    
+	 //	out.println("uploaded successfully...");
+    }
    
   }catch(Exception ex)
   {

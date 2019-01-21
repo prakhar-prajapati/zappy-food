@@ -94,7 +94,7 @@ public class MyDao {
 	}
 		 
 	
-	// delete record
+	// delete record from product_details table
 	public int delete(int pid) {
 		int x = 0;
 
@@ -111,7 +111,7 @@ public class MyDao {
 		return x;
 	}
 
-	// delete record
+	// delete record from cart table
 		public int deleteCartProduct(int id) {
 			int x = 0;
 
@@ -131,7 +131,7 @@ public class MyDao {
 	
 	
 	
-	// Display data
+	// Display product details in admin panel
 	public ArrayList<productBean> ShowData() {
 		ArrayList<productBean> list = new ArrayList<>();
 
@@ -158,7 +158,7 @@ public class MyDao {
 		return list;
 	}
 
-	// Display Cart data inner join
+	// Display Cart data using inner join
 	public ArrayList<joinCartBean> innerCartData(String user) {
 
 		ArrayList<joinCartBean> list = new ArrayList<>();
@@ -185,20 +185,17 @@ public class MyDao {
 		return list;
 	}
 
-	// insert
+	// insert product data from admin panel
 	public int insert(productBean e) {
 		int y = 0;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/zappyfood_db", "root", "root");
-
-			PreparedStatement ps = con.prepareStatement(
+			 Connection con=start();
+			 PreparedStatement ps = con.prepareStatement(
 					"insert into product_details(pcategory,pname,pprice,pdescription,pimage) value(?,?,?,?,?)");// placeholder
-
+		    ps.setString(1, e.getCategory());
 			ps.setString(2, e.getName());
 			ps.setDouble(3, e.getPrice());
 			ps.setString(4, e.getDescription());
-			ps.setString(1, e.getCategory());
 			ps.setString(5, e.getImage());
 
 			y = ps.executeUpdate();
@@ -209,7 +206,7 @@ public class MyDao {
 		return y;
 	}
 
-	// update image
+	// update image from admin panel
 	public int updateimg(productBean e) {
 		int x = 0;
 
@@ -230,7 +227,7 @@ public class MyDao {
 		return x;
 	}
 
-	// update data
+	// update product details from admin panel
 	public int updateData(productBean e) {
 		int x = 0;
 
@@ -255,6 +252,7 @@ public class MyDao {
 		return x;
 	}
 
+	//get all data from product table nd display in feild for update purpose in admin panel
 	public productBean getEmpDetailsByEid(int pid) {
 		productBean e = new productBean();
 		try {
@@ -368,7 +366,7 @@ public class MyDao {
 	
 	////////////
 	
-	//display data sepratly
+	//display data sepratly in index1 jsp page
 	public ArrayList<productBean>   viewProductreadytocook()
 	{
 		ArrayList<productBean> list=new ArrayList<>();
@@ -402,9 +400,9 @@ public class MyDao {
 	public ArrayList<productBean>   viewProductreadytoeat()
 	{
 		ArrayList<productBean> list=new ArrayList<>();
-		try {
+		try(Connection con=start()) {
 			
-			Connection con=start();
+			
 			PreparedStatement ps=con.prepareStatement("select pid,pcategory,pname,pprice,pimage from product_details WHERE pcategory = 'ready to eat'");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -415,13 +413,12 @@ public class MyDao {
 				e.setCategory(rs.getString("pcategory"));
 				e.setName(rs.getString("pname"));
 				e.setPrice(rs.getDouble("pprice"));
-				
 				e.setImage(rs.getString("pimage"));
 				
 
 				list.add(e);
 		     }
-			con.close();
+			//con.close();
 		}catch( SQLException w)
 			{
 			  System.out.println(w);
@@ -508,7 +505,7 @@ public class MyDao {
 		return gtot;
 	}
 	
-	//product discription
+	// show product discription
 	public ArrayList<productBean>   productdesc(int pid)
 	{
 		ArrayList<productBean> list=new ArrayList<>();
@@ -785,7 +782,7 @@ public class MyDao {
 						}
 				
 
-						//product Notavailable
+						//product Not-available
 								public int product_Notavailable(int oid) {
 									int x = 0;
 						      	try {
@@ -839,7 +836,7 @@ public class MyDao {
 								}
 						
 				
-								//get email id for email sending
+								//get email id for email sending purpose
 								public String sendEmail(String user) {
 									String email = null;
 						      	try {
@@ -860,7 +857,7 @@ public class MyDao {
 									return email;
 								}
 					
-								//get password  for forget password email sending
+								//get password  for forget password for email sending
 								public String sendPasswprd(String user) {
 									String password = null;
 						      	try {

@@ -35,8 +35,10 @@ public class Order_Status extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MyDao obj=new MyDao();
 		 HttpSession session = request.getSession();
-		 	String user = (String)session.getAttribute("uid");
-		ArrayList<orderBean> list=obj.Show_User_Order(user);
+		String user = (String)session.getAttribute("uid");
+		int count=obj.cartCount(user);
+		request.setAttribute("count", count);
+	    ArrayList<orderBean> list=obj.Show_User_Order(user);
         RequestDispatcher rd=request.getRequestDispatcher("User_Order_Status.jsp");
         request.setAttribute("List", list);
 		rd.forward(request, response);	

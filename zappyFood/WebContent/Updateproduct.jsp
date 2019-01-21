@@ -84,10 +84,10 @@ out.println(msgs);
 <textarea rows="" cols="" class="form-control" name="pdecs"><%=e.getDescription()%></textarea>
 </div>
 <label>Category:</label>
-             <Select name="pcategory" class="form-control" value=<%=e.getCategory()%>>
-<option value="ready to cook" >ready to cook</option>
-<option value="ready to drink" >ready to drink</option>
-<option value="ready to eat" >ready to eat</option>
+   <Select name="pcategory" class="form-control" value=<%=e.getCategory()%>>
+<option value="ready to cook">ready to cook</option>
+<option value="ready to drink">ready to drink</option>
+<option value="ready to eat">ready to eat</option>
 </Select>
            <br/> <input type="Submit" class="btn btn-primary btn-md" value="UPDATE" /><br/><br/>
 </div>

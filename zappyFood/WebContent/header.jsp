@@ -12,8 +12,8 @@ response.addHeader("expire", "0");
                                 <div class="header_wrapper_inner">
                                    
                                     <div style="width:200px; padding-top:2px;" class="logo col-xs-12">
-                                        <a href="index.html">
-                                            <img src="images/zappy-logo.png" alt="">
+                                        <a href="index.jsp">
+                                            <img  src="images/zappy-logo.png" alt="">
                                         </a>
                                     </div>
                                     
