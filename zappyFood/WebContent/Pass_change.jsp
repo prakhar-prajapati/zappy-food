@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Forget Password</title>
+<title>New password</title>
    <!--Made with love by Mutiullah Samim -->
    
 	<!--Bootsrap 4 CDN-->
@@ -120,23 +120,27 @@ margin-left: 4px;
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="Forget_pass_Servlet" method="post">
+				<form action="Change_pass" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" name="cname" placeholder="username">
-						
+						<input type="text" class="form-control" name="npass" placeholder="Enter Password">
 					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" name="cpass" placeholder="Confirm Password">
+					</div>
+					
 					<div class="form-group">
 						<input type="submit" value="Submit	" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
 			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="customerSignUp.jsp">Sign Up</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>

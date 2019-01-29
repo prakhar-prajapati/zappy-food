@@ -878,5 +878,68 @@ public class MyDao {
 									return password;
 								}
 					
+
+								//OTP insert into mysql
+								public int InsertOTP(String user,String OTP) {
+									int x=0;
+						      	try {
+						      			Connection con = start();
+										PreparedStatement ps = con.prepareStatement("Update customerlogin set Otp=? where cname=?");
+										ps.setString(1,OTP);
+										ps.setString(2,user);
+										System.out.println(ps);
+										System.out.println("insert OTP dao call");
+										 x=ps.executeUpdate();
+										con.close();
+									} catch (SQLException w) {
+										System.out.println(w);
+									}
+									return x;
+								}
+								
+								//OTP check
+								public int OTPCheck(String otp)	 
+								{
+									int x=0;
+								
+									try {
+										
+										Connection con =start(); 
+										// prepared Statement
+										PreparedStatement ps = con.prepareStatement("Select * from customerlogin where OTP=? ");
+										ps.setString(1,otp);
+										ResultSet rs=ps.executeQuery();
+							             x=0;
+										if(rs.next())
+							           x=1;
+								}catch(Exception e)
+									{
+									System.out.println(e);
+									}
+									return x;
+								}
+								
+	
+								//password update
+								 public int Change_pass(String pass , String name)
+								 {
+									 int x=0;
+									 try {
+										 Connection con=start();
+										 PreparedStatement ps = con.prepareStatement("Update customerlogin set cpassword=? where cname=?");
+											ps.setString(1,pass);
+											ps.setString(2,name);
+										x=ps.executeUpdate();
+										System.out.println(ps);
+										con.close();
+										
+									 }catch(Exception e)
+									 {
+										 System.out.println(e);
+									 }
+									 return x;
+								 }
+									
+								
 								
 }

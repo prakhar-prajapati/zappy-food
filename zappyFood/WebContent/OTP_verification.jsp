@@ -120,12 +120,12 @@ margin-left: 4px;
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="Forget_pass_Servlet" method="post">
+				<form action="Otp_check" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" name="cname" placeholder="username">
+						<input type="text" class="form-control" name="OTP" placeholder="ENTER OTP">
 						
 					</div>
 					<div class="form-group">
@@ -134,9 +134,7 @@ margin-left: 4px;
 				</form>
 			</div>
 			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="customerSignUp.jsp">Sign Up</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>

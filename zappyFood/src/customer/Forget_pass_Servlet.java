@@ -1,6 +1,7 @@
 package customer;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MyDao;
 
@@ -46,21 +48,35 @@ public class Forget_pass_Servlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MyDao m=new MyDao();
+		PrintWriter out=response.getWriter();
 		String name=request.getParameter("cname");
-        String email=m.sendEmail(name);
-        String password=m.sendPasswprd(name);
+         request.setAttribute("name", name);       
+		HttpSession session=request.getSession();
+		 session.setAttribute("name", name);       
+			
+		String email=m.sendEmail(name);
+        //String password=m.sendPasswprd(name);
         
 	    if(email!=null)
 	    { 
-	    	 RequestDispatcher rd=request.getRequestDispatcher("Forget_password.jsp");
-	 	      //request.setAttribute("List", list);
-			    request.setAttribute("msg", "<h3>check email address</h3>");
-	 	    
+	    	long l=System.currentTimeMillis();
+	    	String str=l+"";
+	    	String OTP=str.substring(8);
+	    int x=m.InsertOTP(name, OTP);
+            // response.sendRedirect("OTP_verification.jsp");
+	    {
+	    		    	RequestDispatcher rd=request.getRequestDispatcher("OTP_verification.jsp");
+	    		    	request.setAttribute("name", name);       
+	    				 
 	 	    String to=email;
-				 String sub="Your password";
-				 String msgs="Welcome to zappy food ,Your password is= <strong>"+password+"'</strong> <br> dont share with any one.";
+				 String sub="OTP";
+				 String msgs="Welcome to zappy food ,Your OTP is= <strong>"+OTP+"'</strong> <br> dont share with any one.";
 				 sendMail(to,sub,msgs);
 	           rd.forward(request, response);
+	    }
+	    }else
+	    {
+	    	out.println("Wrong username");
 	    }
         
 	}
